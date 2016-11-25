@@ -1,0 +1,9 @@
+CREATE TABLE notes
+(
+	NoteId	INTEGER NOT NULL PRIMARY KEY,
+	Title	TEXT NOT NULL,
+	Description	TEXT
+);
+
+select_all_notes:
+select * from notes;
