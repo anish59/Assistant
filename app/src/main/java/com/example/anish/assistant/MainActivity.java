@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 /*notesRequest=new NotesRequest();
                 notesRequest.setTitle(binding.txtTitle.getText().toString());
                 notesRequest.setDescription(binding.txtDesc.getText().toString());
-                Notes.insertInNotes(notesRequest);
+                notes.insertInNotes(notesRequest);
                 Toast.makeText(MainActivity.this, "Inserted", Toast.LENGTH_SHORT).show();*/
 
                 if((binding.txtTitle.getText().toString().trim()).matches(emailPattern))
@@ -39,5 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
     }
 }

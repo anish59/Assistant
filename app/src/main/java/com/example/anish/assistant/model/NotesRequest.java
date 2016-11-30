@@ -55,7 +55,7 @@ public class NotesRequest extends Notes {
 
     @Override
     public String toString() {
-        return "Notes{"
+        return "notes{"
                 + "NoteId=" + NoteId + ", "
                 + "Title=" + Title + ", "
                 + "Description=" + Description

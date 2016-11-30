@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/notes_bg" />
+
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorBlackTrans"
+        android:orientation="horizontal">
+
+        <LinearLayout
+
+            android:id="@+id/llSignin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@color/colorBlackTrans"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_widthPercent="100%">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:text="Check Internet"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:textColor="@android:color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/checkInternet"
+                    android:layout_alignLeft="@+id/textView2"
+                    android:layout_alignStart="@+id/textView2"
+                    android:id="@+id/textView4" />
+
+
+                <ImageView
+                    android:id="@+id/MyNotes"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/notes_mark"
+                    android:layout_above="@+id/textView4"
+                    android:layout_alignLeft="@+id/MyExpenses"
+                    android:layout_alignStart="@+id/MyExpenses" />
+
+
+                <ImageView
+                    android:id="@+id/myCalendar"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/calendar"
+                    android:layout_above="@+id/textView"
+                    android:layout_alignRight="@+id/textView2"
+                    android:layout_alignEnd="@+id/textView2" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:text="My Calendar"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="46dp"
+                    android:textSize="15dp"
+                    android:textColor="@android:color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"
+                    android:layout_marginStart="46dp"
+                    android:layout_below="@+id/myCalendar"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+
+
+
+                <ImageView
+                    android:id="@+id/MyExpenses"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="44dp"
+                    android:src="@drawable/piggy_bank"
+                    android:layout_marginRight="43dp"
+                    android:layout_marginEnd="43dp"
+                    android:layout_below="@+id/textView3"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:text="My Expenses"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:textColor="@android:color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:layout_below="@+id/MyExpenses"
+                    android:layout_alignLeft="@+id/MyExpenses"
+                    android:layout_alignStart="@+id/MyExpenses" />
+
+                <TextView
+                    android:text="My Notes"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:textColor="@android:color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView3"
+                    android:layout_alignBaseline="@+id/textView4"
+                    android:layout_alignBottom="@+id/textView4"
+                    android:layout_alignRight="@+id/MyNotes"
+                    android:layout_alignEnd="@+id/MyNotes" />
+
+                <ImageView
+                    android:id="@+id/checkInternet"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="190dp"
+                    android:src="@drawable/ethernet"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignLeft="@+id/myCalendar"
+                    android:layout_alignStart="@+id/myCalendar" />
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </android.support.percent.PercentRelativeLayout>
+</RelativeLayout>
+

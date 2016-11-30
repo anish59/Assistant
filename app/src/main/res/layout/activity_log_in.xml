@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="51dp"
+                android:layout_marginRight="51dp"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/cloud" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="64dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/cloud" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.alimuzaffar.lib.widgets.AnimatedEditText
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/round_btn"
+                android:gravity="center_horizontal|center_vertical"
+                android:hint="User Name"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
+                app:animateCursor="true"
+                app:animateTextClear="true"
+                app:animationType="popIn"
+                app:theme="@style/TextLabel" />
+
+            <com.alimuzaffar.lib.widgets.AnimatedEditText
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/round_btn"
+                android:gravity="center_horizontal|center_vertical"
+                android:hint="Password"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
+                app:animateCursor="true"
+                app:animateTextClear="true"
+                app:animationType="popIn"
+                app:theme="@style/TextLabel" />
+
+            <com.github.rubensousa.raiflatbutton.RaiflatImageButton
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Submit"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
