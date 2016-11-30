@@ -137,7 +137,9 @@
                     android:layout_alignBaseline="@+id/textView4"
                     android:layout_alignBottom="@+id/textView4"
                     android:layout_alignRight="@+id/MyNotes"
-                    android:layout_alignEnd="@+id/MyNotes" />
+                    android:layout_alignEnd="@+id/MyNotes"
+                    android:layout_alignLeft="@+id/MyNotes"
+                    android:layout_alignStart="@+id/MyNotes" />
 
                 <ImageView
                     android:id="@+id/checkInternet"
