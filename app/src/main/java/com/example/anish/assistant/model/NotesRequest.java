@@ -12,6 +12,9 @@ public class NotesRequest extends Notes {
     private String Title;
     private String Description;
 
+    public NotesRequest() {
+    }
+
     public long getNoteId() {
         return NoteId;
     }

@@ -7,3 +7,6 @@ CREATE TABLE notes
 
 select_all_notes:
 select * from notes;
+
+select_all_notes_by_noteid:
+select * from notes where NoteId=?;

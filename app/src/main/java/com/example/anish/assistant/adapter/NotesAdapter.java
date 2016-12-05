@@ -3,6 +3,7 @@ package com.example.anish.assistant.adapter;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,10 +50,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         holder.topic.setText("Topic: "+ notesList.get(position).Title());
         holder.detail.setText("Detail: "+ notesList.get(position).Description());
 
+        Log.e("position->",notesList.get(position)+"");
+
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mOnItemClickedListener.onItemClicked(position);
+
             }
         });
     }

@@ -18,6 +18,9 @@ import java.util.List;
 
 @AutoValue
 public abstract class Notes implements notesModel {
+    public Notes() {
+    }
+
     public static final Factory<Notes> FACTORY = new Factory<>(AutoValue_Notes::new);
 
     public static final RowMapper<Notes> NOTES_ROW_MAPPER = FACTORY.select_all_notesMapper();
@@ -60,4 +63,19 @@ public abstract class Notes implements notesModel {
                 Notes.NOTEID+"=?",new String[]{String.valueOf(notesRequest.NoteId())});
         DatabaseManager.getInstance().closeDatabase();
     }
+
+    public static Notes getAllNotesByNoteId(Long noteId) {
+        Notes noteData = null;
+        SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery(Notes.SELECT_ALL_NOTES_BY_NOTEID, new String[]{String.valueOf(noteId)});
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            noteData = Notes.NOTES_ROW_MAPPER.map(cursor);
+        }
+        DatabaseManager.getInstance().closeDatabase();
+        return noteData;
+    }
+
 }

@@ -22,25 +22,25 @@ import java.util.List;
  * Created by anish on 30-11-2016.
  */
 
-public class MyNotesActivity extends AppCompatActivity
-{
+public class MyNotesActivity extends AppCompatActivity {
     List<Notes> notesList;
     ActivityNotesListBinding binding;
     NotesAdapter notesAdapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding= DataBindingUtil.setContentView(this, R.layout.activity_notes_list);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_notes_list);
 
         notesList = new ArrayList<>();
 
-        notesList=Notes.getAllNotes();
+        notesList = Notes.getAllNotes();
         binding.rvNotes.setLayoutManager(new LinearLayoutManager(this));
 
         binding.rvNotes.addItemDecoration(new SimpleDividerItemDecoration(this));
         binding.rvNotes.setItemViewCacheSize(0);
-        notesAdapter= new NotesAdapter(this, notesList, new NotesAdapter.OnItemClickedListener() {
+        notesAdapter = new NotesAdapter(this, notesList, new NotesAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(int position) {
                 Intent intent= new Intent(MyNotesActivity.this,UpdateMyNoteActivity.class);
@@ -57,8 +57,17 @@ public class MyNotesActivity extends AppCompatActivity
         binding.rvNotes.setAdapter(notesAdapter);
     }
 
+    /*  @Override
+      protected void onResume() {
+          super.onResume();
+          notesList=new ArrayList<>();
+          notesList=Notes.getAllNotes();
+          binding.rvNotes.setAdapter(notesAdapter);
+          notesAdapter.notifyDataSetChanged();
+      }
+  */
     public void openAddNote(View view) {
-        Intent intent= new Intent(MyNotesActivity.this, AddNoteActivity.class);
+        Intent intent = new Intent(MyNotesActivity.this, AddNoteActivity.class);
         startActivity(intent);
     }
 }
