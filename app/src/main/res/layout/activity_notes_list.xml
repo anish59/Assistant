@@ -41,6 +41,7 @@
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab"
+                    android:onClick="openAddNote"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:layout_gravity="bottom|end"

@@ -42,14 +42,22 @@ public abstract class Notes implements notesModel {
     }
 
     public static List<Notes> getAllNotes() {
-        List<Notes> faqs = new ArrayList<>();
+        List<Notes> notes = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(Notes.SELECT_ALL_NOTES, new String[]{});
         while (cursor.moveToNext()) {
-            faqs.add(Notes.NOTES_ROW_MAPPER.map(cursor));
+            notes.add(Notes.NOTES_ROW_MAPPER.map(cursor));
         }
         DatabaseManager.getInstance().closeDatabase();
 
-        return faqs;
+        return notes;
+    }
+
+    public static void update(NotesRequest notesRequest)
+    {
+        SQLiteDatabase sqLiteDatabase=DatabaseManager.getInstance().openDatabase();
+        sqLiteDatabase.update(Notes.TABLE_NAME,Notes.FACTORY.marshal(notesRequest).asContentValues(),
+                Notes.NOTEID+"=?",new String[]{String.valueOf(notesRequest.NoteId())});
+        DatabaseManager.getInstance().closeDatabase();
     }
 }

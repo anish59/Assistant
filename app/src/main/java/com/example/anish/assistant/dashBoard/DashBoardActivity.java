@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.anish.assistant.R;
-import com.example.anish.assistant.myNotes.MyNotes;
+import com.example.anish.assistant.myNotes.MyNotesActivity;
 
 /**
  * Created by anish on 30-11-2016.
@@ -24,7 +24,7 @@ public class DashBoardActivity extends AppCompatActivity
 
     public void clickNotes(View view)
     {
-        Intent intent=new Intent(DashBoardActivity.this, MyNotes.class);
+        Intent intent=new Intent(DashBoardActivity.this, MyNotesActivity.class);
         startActivity(intent);
     }
 }

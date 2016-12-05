@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.FullScreen">
         <activity
-            android:name=".MainActivity"
+            android:name=".login.LoginHome"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,10 @@
         </activity>
         <activity android:name=".dashBoard.DashBoardActivity"
             android:theme="@style/AppTheme.NoActionBar.FullScreen"/>
-        <activity android:name=".myNotes.MyNotes"/>
+        <activity android:name=".myNotes.MyNotesActivity"/>
+        <activity android:name=".myNotes.AddNoteActivity"/>
+        <activity android:name=".myNotes.UpdateMyNoteActivity"/>
+
     </application>
 
 </manifest>

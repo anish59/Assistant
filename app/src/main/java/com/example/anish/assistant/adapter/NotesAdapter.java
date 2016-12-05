@@ -22,10 +22,19 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     ActivityNotesItemBinding binding;
     Context mContext;
     List<Notes> notesList;
+    OnItemClickedListener mOnItemClickedListener;
 
-    public NotesAdapter(Context mContext, List<Notes> stringList) {
+    public interface OnItemClickedListener
+    {
+        void onItemClicked(int position);
+    }
+
+
+
+    public NotesAdapter(Context mContext, List<Notes> stringList,OnItemClickedListener mOnItemClickedListener) {
         this.mContext = mContext;
         this.notesList = stringList;
+        this.mOnItemClickedListener=mOnItemClickedListener;
     }
 
     @Override
@@ -39,6 +48,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     public void onBindViewHolder(NotesViewHolder holder, int position) {
         holder.topic.setText("Topic: "+ notesList.get(position).Title());
         holder.detail.setText("Detail: "+ notesList.get(position).Description());
+
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOnItemClickedListener.onItemClicked(position);
+            }
+        });
     }
 
     @Override

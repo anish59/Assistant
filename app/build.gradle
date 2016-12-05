@@ -31,7 +31,8 @@ android {
 repositories {
     maven {
         url 'https://dl.bintray.com/spark/maven'
-    }
+        }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -51,6 +52,7 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.0.0'
     compile 'me.spark:submitbutton:1.0.1'
+    compile 'com.github.dmytrodanylyk:android-morphing-button:98a4986e56'
 
 
 }

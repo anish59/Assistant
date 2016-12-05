@@ -1,4 +1,4 @@
-package com.example.anish.assistant;
+package com.example.anish.assistant.myNotes;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.anish.assistant.R;
 import com.example.anish.assistant.databinding.ActivityAddnoteBinding;
-import com.example.anish.assistant.databinding.ActivityMainBinding;
 import com.example.anish.assistant.model.Notes;
 import com.example.anish.assistant.model.NotesRequest;
 
-public class MainActivity extends AppCompatActivity {
+public class AddNoteActivity extends AppCompatActivity {
     ActivityAddnoteBinding binding;
     NotesRequest notesRequest;
 
@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
 //                binding.txtTitle.getText().toString();
                 if (binding.txtTitle.getText().toString().trim().equals("")
                         || binding.txtTitle.getText().toString().trim() == null) {
-                    Toast.makeText(MainActivity.this, "Please Enter Title", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNoteActivity.this, "Please Enter Title", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (binding.txtDesc.getText().toString().trim().equals("")
                         || binding.txtDesc.getText().toString().trim() == null) {
-                    Toast.makeText(MainActivity.this, "Please Enter Description", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNoteActivity.this, "Please Enter Description", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 notesRequest = new NotesRequest();
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     Notes.insertInNotes(notesRequest);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(MainActivity.this, "Sorry your note was not saved!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNoteActivity.this, "Sorry your note was not saved!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
 //    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 if((binding.txtTitle.getText().toString().trim()).matches(emailPattern))
                 {
-                    Toast.makeText(MainActivity.this, "Valid Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNoteActivity.this, "Valid Email", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(MainActivity.this, "invalid Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNoteActivity.this, "invalid Email", Toast.LENGTH_SHORT).show();
                 }
 */

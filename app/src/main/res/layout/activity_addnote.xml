@@ -1,78 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccentTrans"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="48dp">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/notes_mark" />
-
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="#FFF">
+        android:layout_height="match_parent"
+        android:background="@color/colorAccentTrans"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="48dp">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/txt_title"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/notes_mark" />
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Topic"
-            android:textColor="#FFFFFF" />
-    </android.support.design.widget.TextInputLayout>
+            android:textColorHint="#FFF">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textColorHint="#FFF">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Topic"
+                android:textColor="#FFFFFF" />
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/txt_desc"
-            android:maxLength="2000"
-            android:maxLines="4"
-            android:inputType="textCapSentences|textMultiLine"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
-            android:textColor="#FFFFFF" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="24dp"
+            android:textColorHint="#FFF">
 
-<!--    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textColorHint="#FFF">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/txt_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLength="2000"
+                android:maxLines="4"
+                android:textColor="#FFFFFF" />
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Mobile Number"
-            android:textColor="#FFFFFF" />
-    </android.support.design.widget.TextInputLayout>-->
+        <!--    <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textColorHint="#FFF">
 
-    <com.spark.submitbutton.SubmitButton
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mobile Number"
+                    android:textColor="#FFFFFF" />
+            </android.support.design.widget.TextInputLayout>-->
 
-        android:layout_gravity="center_horizontal"
-        android:layout_width="50dp"
-        android:layout_height="20dp"
-        android:text="@string/yes_please"
-        android:id="@+id/insert"
-        android:textColor="@color/white"
-        app:sub_btn_background="#009e9e"
-        app:sub_btn_duration="2000"
-        app:sub_btn_line_color="#009e9e"
-        app:sub_btn_ripple_color="#673AB7"
-        app:sub_btn_tick_color="@color/white" />
+        <com.spark.submitbutton.SubmitButton
+
+            android:id="@+id/insert"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/yes_please"
+            android:textColor="@color/white"
+            app:sub_btn_background="#009e9e"
+            app:sub_btn_duration="2000"
+            app:sub_btn_line_color="#009e9e"
+            app:sub_btn_ripple_color="#673AB7"
+            app:sub_btn_tick_color="@color/white" />
+
+        <com.spark.submitbutton.SubmitButton
+            android:visibility="gone"
+            android:id="@+id/btn_update"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/note_update"
+            android:textColor="@color/white"
+            app:sub_btn_background="#009e9e"
+            app:sub_btn_duration="2000"
+            app:sub_btn_line_color="#009e9e"
+            app:sub_btn_ripple_color="#673AB7"
+            app:sub_btn_tick_color="@color/white" />
 
 
-</LinearLayout>
+        <com.spark.submitbutton.SubmitButton
+            android:visibility="gone"
+            android:id="@+id/btn_delete"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/note_delete"
+            android:textColor="@color/white"
+            app:sub_btn_background="#009e9e"
+            app:sub_btn_duration="2000"
+            app:sub_btn_line_color="#009e9e"
+            app:sub_btn_ripple_color="#673AB7"
+            app:sub_btn_tick_color="@color/white" />
+
+
+    </LinearLayout>
 </layout>
