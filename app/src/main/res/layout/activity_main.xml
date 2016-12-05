@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -11,6 +12,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context="com.example.anish.assistant.MainActivity">
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,10 +28,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
+    <com.spark.submitbutton.SubmitButton
+
+        android:layout_gravity="center_horizontal"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="@string/yes_please"
         android:id="@+id/insert"
-        android:text="Insert"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/black"
+        app:sub_btn_duration="3000"
+        app:sub_btn_line_color="#009e9e"
+        app:sub_btn_ripple_color="#673AB7"
+        app:sub_btn_tick_color="@color/white" />
+    <!--app:sub_btn_background=""-->
 </LinearLayout>
 </layout>

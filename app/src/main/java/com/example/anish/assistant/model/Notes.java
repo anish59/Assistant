@@ -1,5 +1,6 @@
 package com.example.anish.assistant.model;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -7,6 +8,9 @@ import com.example.anish.assistant.dataBaseHelper.DatabaseManager;
 import com.example.anish.assistant.notesModel;
 import com.google.auto.value.AutoValue;
 import com.squareup.sqldelight.RowMapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by anish on 25-11-2016.
@@ -35,5 +39,17 @@ public abstract class Notes implements notesModel {
             Log.e("INSERT_NOTES_EXP", e.toString());
 
         }
+    }
+
+    public static List<Notes> getAllNotes() {
+        List<Notes> faqs = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(Notes.SELECT_ALL_NOTES, new String[]{});
+        while (cursor.moveToNext()) {
+            faqs.add(Notes.NOTES_ROW_MAPPER.map(cursor));
+        }
+        DatabaseManager.getInstance().closeDatabase();
+
+        return faqs;
     }
 }

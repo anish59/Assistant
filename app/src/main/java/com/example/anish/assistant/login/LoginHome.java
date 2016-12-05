@@ -1,5 +1,6 @@
 package com.example.anish.assistant.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.percent.PercentLayoutHelper;
 import android.support.percent.PercentRelativeLayout;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.anish.assistant.R;
+import com.example.anish.assistant.dashBoard.DashBoardActivity;
 
 /**
  * Created by anish on 30-11-2016.
@@ -62,6 +64,14 @@ public class LoginHome extends AppCompatActivity
                 btnSignup.startAnimation(clockwise);
             }
         });
+
+        btnSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(LoginHome.this, DashBoardActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void showSignupForm() {
@@ -105,5 +115,6 @@ public class LoginHome extends AppCompatActivity
         tvSigninInvoker.setVisibility(View.GONE);
         Animation clockwise= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_left_to_right);
         btnSignin.startAnimation(clockwise);
+
     }
 }

@@ -6,27 +6,48 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.anish.assistant.databinding.ActivityAddnoteBinding;
 import com.example.anish.assistant.databinding.ActivityMainBinding;
 import com.example.anish.assistant.model.Notes;
 import com.example.anish.assistant.model.NotesRequest;
 
 public class MainActivity extends AppCompatActivity {
-    ActivityMainBinding binding;
+    ActivityAddnoteBinding binding;
     NotesRequest notesRequest;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_addnote);
         binding.insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //binding.txtTitle.getText().toString();
-                /*notesRequest=new NotesRequest();
+//                binding.txtTitle.getText().toString();
+                if (binding.txtTitle.getText().toString().trim().equals("")
+                        || binding.txtTitle.getText().toString().trim() == null) {
+                    Toast.makeText(MainActivity.this, "Please Enter Title", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (binding.txtDesc.getText().toString().trim().equals("")
+                        || binding.txtDesc.getText().toString().trim() == null) {
+                    Toast.makeText(MainActivity.this, "Please Enter Description", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                notesRequest = new NotesRequest();
                 notesRequest.setTitle(binding.txtTitle.getText().toString());
                 notesRequest.setDescription(binding.txtDesc.getText().toString());
-                notes.insertInNotes(notesRequest);
-                Toast.makeText(MainActivity.this, "Inserted", Toast.LENGTH_SHORT).show();*/
-
+                try {
+                    Notes.insertInNotes(notesRequest);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this, "Sorry your note was not saved!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+}
+/*
+//    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 if((binding.txtTitle.getText().toString().trim()).matches(emailPattern))
                 {
                     Toast.makeText(MainActivity.this, "Valid Email", Toast.LENGTH_SHORT).show();
@@ -35,9 +56,4 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Toast.makeText(MainActivity.this, "invalid Email", Toast.LENGTH_SHORT).show();
                 }
-
-            }
-        });
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-    }
-}
+*/
