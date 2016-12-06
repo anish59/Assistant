@@ -37,7 +37,7 @@ public class MyNotesActivity extends AppCompatActivity {
 
         notesList = Notes.getAllNotes();
         binding.rvNotes.setLayoutManager(new LinearLayoutManager(this));
-
+Log.e("size",notesList.size()+"");
         binding.rvNotes.addItemDecoration(new SimpleDividerItemDecoration(this));
         binding.rvNotes.setItemViewCacheSize(0);
         notesAdapter = new NotesAdapter(this, notesList, new NotesAdapter.OnItemClickedListener() {
@@ -46,12 +46,13 @@ public class MyNotesActivity extends AppCompatActivity {
                 Intent intent= new Intent(MyNotesActivity.this,UpdateMyNoteActivity.class);
                 String topic=notesList.get(position).Title();
                 String desc=notesList.get(position).Description();
+
                 intent.putExtra("topic",topic);
                 intent.putExtra("desc",desc);
                 intent.putExtra("status","status");
-                Log.e("###topic",topic);
-                Log.e("###desc",desc);
-                startActivity(intent);
+                Log.e("##-pos->",position+" "+topic);
+                Log.e("##-id->",notesList.get(position).NoteId()+"");
+                //startActivity(intent);
             }
         });
         binding.rvNotes.setAdapter(notesAdapter);

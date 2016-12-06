@@ -30,8 +30,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         void onItemClicked(int position);
     }
 
-
-
     public NotesAdapter(Context mContext, List<Notes> stringList,OnItemClickedListener mOnItemClickedListener) {
         this.mContext = mContext;
         this.notesList = stringList;
@@ -41,24 +39,21 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     @Override
     public NotesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         binding= DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.activity_notes_item,parent,false);
-        View itemView=binding.getRoot();
-        return new NotesViewHolder(itemView);
+        binding.executePendingBindings();
+//        View itemView=binding.getRoot();
+        return new NotesViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(NotesViewHolder holder, int position) {
-        holder.topic.setText("Topic: "+ notesList.get(position).Title());
-        holder.detail.setText("Detail: "+ notesList.get(position).Description());
 
-        Log.e("position->",notesList.get(position)+"");
+       /* holder.topic.setText("Topic: "+ notesList.get(position).Title());
+        holder.detail.setText("Detail: "+ notesList.get(position).Description());*/
 
-        binding.getRoot().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mOnItemClickedListener.onItemClicked(position);
+        Notes notes=notesList.get(position);
+        holder.setDetails(notes);
 
-            }
-        });
+
     }
 
     @Override
@@ -68,13 +63,33 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     public class NotesViewHolder extends RecyclerView.ViewHolder {
 
+        private ActivityNotesItemBinding binding;
 
-        TextView topic, detail;
+        public NotesViewHolder(ActivityNotesItemBinding itemView) {
+            super(itemView.getRoot());
+            binding=itemView;
+            /*topic = binding.txtTopic;
+            detail = binding.txtDetail;*/
+        }
 
-        public NotesViewHolder(View itemView) {
-            super(itemView);
-            topic = binding.txtTopic;
-            detail = binding.txtDetail;
+        public void setDetails(Notes notes) {
+           binding.txtTopic.setText("Topic: "+ notes.Title());
+           binding.txtDetail.setText("Detail: "+ notes.Description());
+
+      /*  Log.e("pos-=",position+"");
+
+        Log.e("position->",notesList.get(position).NoteId()+"");*/
+
+
+            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.e("click",notes.Title());
+                  //  mOnItemClickedListener.onItemClicked(position);
+
+                }
+            });
+            binding.executePendingBindings();
         }
     }
 }
