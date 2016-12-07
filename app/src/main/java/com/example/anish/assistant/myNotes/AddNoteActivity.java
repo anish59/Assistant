@@ -1,17 +1,22 @@
 package com.example.anish.assistant.myNotes;
 
 import android.databinding.DataBindingUtil;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.anish.assistant.R;
+import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.databinding.ActivityAddnoteBinding;
 import com.example.anish.assistant.model.Notes;
 import com.example.anish.assistant.model.NotesRequest;
+
+import java.text.SimpleDateFormat;
 
 public class AddNoteActivity extends AppCompatActivity {
     ActivityAddnoteBinding binding;
@@ -61,14 +66,29 @@ public class AddNoteActivity extends AppCompatActivity {
                 notesRequest = new NotesRequest();
                 notesRequest.setTitle(binding.txtTitle.getText().toString());
                 notesRequest.setDescription(binding.txtDesc.getText().toString());
+              //  DateHelper dateHelper=new DateHelper();
+
+                notesRequest.setNoteDate(DateHelper.getCurrentDateTime());//Used a Date Helper class
                 try {
                     Notes.insertInNotes(notesRequest);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(AddNoteActivity.this, "Sorry your note was not saved!!", Toast.LENGTH_SHORT).show();
                 }
+                delayOneSec();
             }
+
         });
+    }
+
+    private void delayOneSec() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        }, 1500);
     }
 
 }

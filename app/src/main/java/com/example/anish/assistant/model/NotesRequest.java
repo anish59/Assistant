@@ -11,9 +11,7 @@ public class NotesRequest extends Notes {
     private long NoteId;
     private String Title;
     private String Description;
-
-    public NotesRequest() {
-    }
+    private String NoteDate;
 
     public long getNoteId() {
         return NoteId;
@@ -39,6 +37,14 @@ public class NotesRequest extends Notes {
         Description = description;
     }
 
+    public String getNoteDate() {
+        return NoteDate;
+    }
+
+    public void setNoteDate(String noteDate) {
+        NoteDate = noteDate;
+    }
+
     @Override
     public long NoteId() {
         return NoteId;
@@ -56,12 +62,19 @@ public class NotesRequest extends Notes {
         return Description;
     }
 
+    @Nullable
+    @Override
+    public String NoteDate() {
+        return NoteDate;
+    }
+
     @Override
     public String toString() {
-        return "notes{"
+        return "Notes{"
                 + "NoteId=" + NoteId + ", "
                 + "Title=" + Title + ", "
-                + "Description=" + Description
+                + "Description=" + Description + ", "
+                + "NoteDate=" + NoteDate
                 + "}";
     }
 
@@ -74,7 +87,8 @@ public class NotesRequest extends Notes {
             Notes that = (Notes) o;
             return (this.NoteId == that.NoteId())
                     && (this.Title.equals(that.Title()))
-                    && ((this.Description == null) ? (that.Description() == null) : this.Description.equals(that.Description()));
+                    && ((this.Description == null) ? (that.Description() == null) : this.Description.equals(that.Description()))
+                    && ((this.NoteDate == null) ? (that.NoteDate() == null) : this.NoteDate.equals(that.NoteDate()));
         }
         return false;
     }
@@ -88,7 +102,8 @@ public class NotesRequest extends Notes {
         h ^= this.Title.hashCode();
         h *= 1000003;
         h ^= (Description == null) ? 0 : this.Description.hashCode();
+        h *= 1000003;
+        h ^= (NoteDate == null) ? 0 : this.NoteDate.hashCode();
         return h;
     }
-
 }

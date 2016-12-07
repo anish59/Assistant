@@ -38,4 +38,24 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="round_edit_text_multiLine" parent="round_edit_text">
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:gravity">left|top</item>
+        <item name="android:lines">16</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:minLines">4</item>
+    </style>
+
+    <style name="round_edit_text">
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="menuItemsColor" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+    </style>
+
 </resources>

@@ -35,8 +35,8 @@ public abstract class Notes implements notesModel {
             sqLiteDatabase.insert(Notes.TABLE_NAME, null, Notes.FACTORY.marshal()
                     .Title(notesRequest.Title())
                     .Description(notesRequest.Description())
+                    .NoteDate(notesRequest.NoteDate())
                     .asContentValues());
-
             DatabaseManager.getInstance().closeDatabase();
         } catch (Exception e) {
             Log.e("INSERT_NOTES_EXP", e.toString());
@@ -56,14 +56,21 @@ public abstract class Notes implements notesModel {
         return notes;
     }
 
-    public static void update(NotesRequest notesRequest)
-    {
-        SQLiteDatabase sqLiteDatabase=DatabaseManager.getInstance().openDatabase();
-        sqLiteDatabase.update(Notes.TABLE_NAME,Notes.FACTORY.marshal(notesRequest).asContentValues(),
-                Notes.NOTEID+"=?",new String[]{String.valueOf(notesRequest.NoteId())});
+    public static void update(NotesRequest notesRequest) {
+        SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
+        sqLiteDatabase.update(Notes.TABLE_NAME, Notes.FACTORY.marshal(notesRequest).asContentValues(),
+                Notes.NOTEID + "=?", new String[]{String.valueOf(notesRequest.NoteId())});
         DatabaseManager.getInstance().closeDatabase();
     }
 
+
+    public static void delete(long noteId) {
+        SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
+        sqLiteDatabase.delete(Notes.TABLE_NAME, Notes.NOTEID + "=?", new String[]{String.valueOf(noteId)});
+        DatabaseManager.getInstance().closeDatabase();
+    }
+}
+/*
     public static Notes getAllNotesByNoteId(Long noteId) {
         Notes noteData = null;
         SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
@@ -76,6 +83,4 @@ public abstract class Notes implements notesModel {
         }
         DatabaseManager.getInstance().closeDatabase();
         return noteData;
-    }
-
-}
+    }*/

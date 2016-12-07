@@ -3,4 +3,8 @@
     <string name="yes_please">Yes Please</string>
     <string name="note_update">Update</string>
     <string name="note_delete">Delete</string>
+    <string name="indieflower">IndieFlower.ttf</string>
+    <string name="NiconneRegular">Niconne-Regular.ttf</string>
+    <string name="CourgetteRegular">Courgette-Regular.ttf</string>
+    <string name="verdana">Verdana.ttf</string>
 </resources>

@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +23,6 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-
                 android:id="@+id/llSignin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -31,8 +31,18 @@
                 android:gravity="center_vertical"
                 android:orientation="vertical"
                 app:layout_widthPercent="100%">
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:minHeight="?attr/actionBarSize"
+                    android:orientation="horizontal"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:theme="@style/menuItemsColor" />
+                <!--android:background="#80"-->
 
                 <android.support.v7.widget.RecyclerView
+                    android:layout_below="@id/toolbar"
                     android:id="@+id/rv_notes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">

@@ -3,13 +3,12 @@ package com.example.anish.assistant.adapter;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.anish.assistant.R;
+import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.databinding.ActivityNotesItemBinding;
 import com.example.anish.assistant.model.Notes;
 
@@ -25,20 +24,19 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     List<Notes> notesList;
     OnItemClickedListener mOnItemClickedListener;
 
-    public interface OnItemClickedListener
-    {
+    public interface OnItemClickedListener {
         void onItemClicked(int position);
     }
 
-    public NotesAdapter(Context mContext, List<Notes> stringList,OnItemClickedListener mOnItemClickedListener) {
+    public NotesAdapter(Context mContext, List<Notes> stringList, OnItemClickedListener mOnItemClickedListener) {
         this.mContext = mContext;
         this.notesList = stringList;
-        this.mOnItemClickedListener=mOnItemClickedListener;
+        this.mOnItemClickedListener = mOnItemClickedListener;
     }
 
     @Override
     public NotesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        binding= DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.activity_notes_item,parent,false);
+        binding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.activity_notes_item, parent, false);
         binding.executePendingBindings();
 //        View itemView=binding.getRoot();
         return new NotesViewHolder(binding);
@@ -50,8 +48,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
        /* holder.topic.setText("Topic: "+ notesList.get(position).Title());
         holder.detail.setText("Detail: "+ notesList.get(position).Description());*/
 
-        Notes notes=notesList.get(position);
-        holder.setDetails(notes);
+        Notes notes = notesList.get(position);
+        holder.setDetails(notes,position);
 
 
     }
@@ -67,29 +65,37 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
         public NotesViewHolder(ActivityNotesItemBinding itemView) {
             super(itemView.getRoot());
-            binding=itemView;
+            binding = itemView;
             /*topic = binding.txtTopic;
             detail = binding.txtDetail;*/
         }
 
-        public void setDetails(Notes notes) {
-           binding.txtTopic.setText("Topic: "+ notes.Title());
-           binding.txtDetail.setText("Detail: "+ notes.Description());
+        public void setDetails(Notes notes,int position) {
+            binding.txtTopic.setText(notes.Title());
+            binding.txtDetail.setText(notes.Description());
+            binding.txtDate.setText(DateHelper.formatDate_MMMM_dd_yyyy(notes.NoteDate()));
 
       /*  Log.e("pos-=",position+"");
 
         Log.e("position->",notesList.get(position).NoteId()+"");*/
 
 
-            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+           /* binding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    Log.e("click",notes.Title());
-                  //  mOnItemClickedListener.onItemClicked(position);
+                public void onClick(int position) {
+                    Log.e("click", notes.Title());
+                    mOnItemClickedListener.onItemClicked(position);
 
                 }
             });
-            binding.executePendingBindings();
+            binding.executePendingBindings();*/
+
+            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mOnItemClickedListener.onItemClicked(position);
+                }
+            });
         }
     }
 }
