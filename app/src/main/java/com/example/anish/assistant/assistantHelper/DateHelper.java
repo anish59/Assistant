@@ -24,6 +24,12 @@ public class DateHelper
 //        notesRequest.setNoteDate(dateString);
     }
 
+    public static long getCurrentDateTimeInMili() {
+        long date = System.currentTimeMillis();
+        Log.d("##date->", date+"");
+        return date;
+    }
+
     public static String formatDate_MMMM_dd_yyyy(String inputDate) {
         SimpleDateFormat inputFormat = new SimpleDateFormat(MMM_MM_dd_yyyy_h_mm_a);
         SimpleDateFormat outputFormat = new SimpleDateFormat(MMMM_dd_yyyy);
@@ -38,5 +44,26 @@ public class DateHelper
             e.printStackTrace();
         }
         return str;
+    }
+
+    public static Date parseDate(String dateStr, String type) {
+        SimpleDateFormat df = new SimpleDateFormat(type);
+        Date date = null;
+        try {
+            date = df.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+
+    }
+
+    public static Long getTimeInMili(String givenDateString, String inputDate) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat(inputDate);
+
+        Date mDate = sdf.parse(givenDateString);
+        long timeInMilliseconds = mDate.getTime();
+        return timeInMilliseconds;
     }
 }

@@ -36,6 +36,7 @@ public abstract class Notes implements notesModel {
                     .Title(notesRequest.Title())
                     .Description(notesRequest.Description())
                     .NoteDate(notesRequest.NoteDate())
+                    .NoteDateMili(notesRequest.NoteDateMili())
                     .asContentValues());
             DatabaseManager.getInstance().closeDatabase();
         } catch (Exception e) {

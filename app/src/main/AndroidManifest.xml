@@ -23,6 +23,7 @@
         <activity android:name=".myNotes.MyNotesActivity"/>
         <activity android:name=".myNotes.AddNoteActivity"/>
         <activity android:name=".myNotes.UpdateMyNoteActivity"/>
+        <activity android:name=".myCalendar.MyCalendarActivity"/>
 
     </application>
 

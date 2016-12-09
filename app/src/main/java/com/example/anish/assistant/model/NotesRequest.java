@@ -7,11 +7,12 @@ import android.support.annotation.Nullable;
  * Created by anish on 25-11-2016.
  */
 
-public class NotesRequest extends Notes {
-    private long NoteId;
-    private String Title;
-    private String Description;
-    private String NoteDate;
+public class NotesRequest extends Notes{
+    private  long NoteId;
+    private  String Title;
+    private  String Description;
+    private  String NoteDate;
+    private  Long NoteDateMili;
 
     public long getNoteId() {
         return NoteId;
@@ -45,6 +46,14 @@ public class NotesRequest extends Notes {
         NoteDate = noteDate;
     }
 
+    public Long getNoteDateMili() {
+        return NoteDateMili;
+    }
+
+    public void setNoteDateMili(Long noteDateMili) {
+        NoteDateMili = noteDateMili;
+    }
+
     @Override
     public long NoteId() {
         return NoteId;
@@ -68,13 +77,20 @@ public class NotesRequest extends Notes {
         return NoteDate;
     }
 
+    @Nullable
+    @Override
+    public Long NoteDateMili() {
+        return NoteDateMili;
+    }
+
     @Override
     public String toString() {
         return "Notes{"
                 + "NoteId=" + NoteId + ", "
                 + "Title=" + Title + ", "
                 + "Description=" + Description + ", "
-                + "NoteDate=" + NoteDate
+                + "NoteDate=" + NoteDate + ", "
+                + "NoteDateMili=" + NoteDateMili
                 + "}";
     }
 
@@ -88,7 +104,8 @@ public class NotesRequest extends Notes {
             return (this.NoteId == that.NoteId())
                     && (this.Title.equals(that.Title()))
                     && ((this.Description == null) ? (that.Description() == null) : this.Description.equals(that.Description()))
-                    && ((this.NoteDate == null) ? (that.NoteDate() == null) : this.NoteDate.equals(that.NoteDate()));
+                    && ((this.NoteDate == null) ? (that.NoteDate() == null) : this.NoteDate.equals(that.NoteDate()))
+                    && ((this.NoteDateMili == null) ? (that.NoteDateMili() == null) : this.NoteDateMili.equals(that.NoteDateMili()));
         }
         return false;
     }
@@ -104,6 +121,9 @@ public class NotesRequest extends Notes {
         h ^= (Description == null) ? 0 : this.Description.hashCode();
         h *= 1000003;
         h ^= (NoteDate == null) ? 0 : this.NoteDate.hashCode();
+        h *= 1000003;
+        h ^= (NoteDateMili == null) ? 0 : this.NoteDateMili.hashCode();
         return h;
     }
+
 }

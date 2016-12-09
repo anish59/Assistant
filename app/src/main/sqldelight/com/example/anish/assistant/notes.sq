@@ -3,11 +3,14 @@ CREATE TABLE notes
 	NoteId	INTEGER NOT NULL PRIMARY KEY,
 	Title	TEXT NOT NULL,
 	Description	TEXT,
-	NoteDate TEXT
+	NoteDate TEXT,
+	NoteDateMili INTEGER
 );
 
 select_all_notes:
-select * from notes order by NoteId desc;
+select * from notes order by NoteDateMili desc;
+--select * from notes order by NoteId desc;
+
 
 select_all_notes_by_noteid:
 select * from notes where NoteId=?;

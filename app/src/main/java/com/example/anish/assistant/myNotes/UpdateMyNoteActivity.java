@@ -66,8 +66,8 @@ public class UpdateMyNoteActivity extends AppCompatActivity {
                 notesRequest.setNoteId(noteId);
                 notesRequest.setTitle(binding.txtTitle.getText().toString().trim());
                 notesRequest.setDescription(binding.txtDesc.getText().toString().trim());
-                DateHelper dateHelper=new DateHelper();//Used a Date Helper class
-                notesRequest.setNoteDate(dateHelper.getCurrentDateTime());
+                notesRequest.setNoteDate(DateHelper.getCurrentDateTime());
+                notesRequest.setNoteDateMili(DateHelper.getCurrentDateTimeInMili());
                 try {
                     Notes.update(notesRequest);
                 } catch (Exception e) {

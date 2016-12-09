@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -77,6 +78,7 @@
 
                 <ImageView
                     android:id="@+id/myCalendar"
+                    android:onClick="clickMyCalendar"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:layout_above="@+id/textView"
@@ -159,4 +161,4 @@
 
     </android.support.percent.PercentRelativeLayout>
 </RelativeLayout>
-
+</layout>
