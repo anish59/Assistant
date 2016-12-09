@@ -57,6 +57,19 @@ public abstract class Notes implements notesModel {
         return notes;
     }
 
+    public static List<Notes> getAllNotesByDate(String date) {
+        List<Notes> notes = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
+        String query = String.format(Notes.SELECT_ALL_NOTES_BY_NOTEDATE, date);
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{});
+        while (cursor.moveToNext()) {
+            notes.add(Notes.NOTES_ROW_MAPPER.map(cursor));
+        }
+        DatabaseManager.getInstance().closeDatabase();
+
+        return notes;
+    }
+
     public static void update(NotesRequest notesRequest) {
         SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
         sqLiteDatabase.update(Notes.TABLE_NAME, Notes.FACTORY.marshal(notesRequest).asContentValues(),
