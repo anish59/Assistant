@@ -1,24 +1,27 @@
 package com.example.anish.assistant.myCalendar;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.anish.assistant.R;
+import com.example.anish.assistant.adapter.NotesAdapter;
 import com.example.anish.assistant.assistantHelper.DateHelper;
+import com.example.anish.assistant.assistantHelper.SimpleDividerItemDecoration;
 import com.example.anish.assistant.databinding.ActivityMycalendarBinding;
 import com.example.anish.assistant.model.Notes;
+import com.example.anish.assistant.myNotes.UpdateMyNoteActivity;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +33,18 @@ public class MyCalendarActivity extends AppCompatActivity {
 
     ActivityMycalendarBinding binding;
     List<Notes> notesList, notes;
+    NotesAdapter mNotesAdapter;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    /*    if(notes.size()>0)
+        {
+            notes.clear();
+        }*/
+        getEventOnDate(binding.compactCalendarView.getCurrentDate());
+        mNotesAdapter.notifyDataSetChanged();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +52,7 @@ public class MyCalendarActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_mycalendar);
 
         notesList = Notes.getAllNotes();
-        getCurrentMonth();
+        getMonth();
         Event ev;
         for (int i = 0; i < notesList.size(); i++) {
             ev = new Event(Color.GREEN, notesList.get(i).NoteDateMili());
@@ -47,14 +62,7 @@ public class MyCalendarActivity extends AppCompatActivity {
         binding.compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-//                Toast.makeText(MyCalendarActivity.this, dateClicked+"", Toast.LENGTH_SHORT).show();
-                String matchDate = DateHelper.formatDate(dateClicked, DateHelper.MMM_MM_dd_yyyy);
-                notes = new ArrayList<Notes>();
-                notes = Notes.getAllNotesByDate(matchDate);
-                for (int i = 0; i < notes.size(); i++) {
-                    Log.e("###notes:", notes.get(i) + "");
-                }
-
+                getEventOnDate(dateClicked);
             }
 
             @Override
@@ -64,21 +72,56 @@ public class MyCalendarActivity extends AppCompatActivity {
         });
     }
 
+    private void getEventOnDate(Date dateSelected) {
+        String matchDate = DateHelper.formatDate(dateSelected, DateHelper.MMM_MM_dd_yyyy);
+        notes = new ArrayList<Notes>();
+        notes = Notes.getAllNotesByDate(matchDate);
+        for (int i = 0; i < notes.size(); i++) {
+            Log.e("###notes:", notes.get(i) + "");
+        }
+
+        binding.rvEventList.setLayoutManager(new LinearLayoutManager(MyCalendarActivity.this));
+        binding.rvEventList.addItemDecoration(new SimpleDividerItemDecoration(MyCalendarActivity.this));
+        binding.rvEventList.setItemViewCacheSize(0);
+        mNotesAdapter = new NotesAdapter(MyCalendarActivity.this, notes, new NotesAdapter.OnItemClickedListener() {
+            @Override
+            public void onItemClicked(int position) {
+                Intent intent = new Intent(MyCalendarActivity.this, UpdateMyNoteActivity.class);
+                String topic = notes.get(position).Title();
+                String desc = notes.get(position).Description();
+                Long noteId = notes.get(position).NoteId();
+
+                intent.putExtra("topic", topic);
+                intent.putExtra("desc", desc);
+                intent.putExtra("noteId", noteId);
+                intent.putExtra("status", "status");
+                Log.e("##-pos->", position + " " + topic);
+                Log.e("##-id->", notes.get(position).NoteId() + "");
+                startActivity(intent);
+            }
+        });
+        binding.rvEventList.setAdapter(mNotesAdapter);
+    }
+
     public void onPreviousMonth(View view) {
         binding.compactCalendarView.showPreviousMonth();
-        getCurrentMonth();
+        getMonth();
     }
 
     public void onNextMonthClick(View view) {
         binding.compactCalendarView.showNextMonth();
-        getCurrentMonth();
+        getMonth();
     }
 
-    private void getCurrentMonth() {
+    private void getMonth() {
         binding.currentMonth.setText(DateHelper.formatDate(binding.compactCalendarView.getFirstDayOfCurrentMonth(), DateHelper.MonthFormat));
         Log.e("###date->", DateHelper.formatDate(binding.compactCalendarView.getFirstDayOfCurrentMonth(), DateHelper.MonthFormat));
     }
 
+    public void onDateClicked(View view)
+    {
+
+    }
 }
 
 
