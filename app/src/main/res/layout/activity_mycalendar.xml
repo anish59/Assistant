@@ -7,10 +7,20 @@
         android:background="@color/colorAccentTrans"
         android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            android:orientation="horizontal"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/menuItemsColor" />
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             app:cardElevation="5dp">
 
             <LinearLayout
@@ -60,7 +70,7 @@
                 <com.github.sundeepk.compactcalendarview.CompactCalendarView
                     android:id="@+id/compactCalendarView"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="220dp"
                     android:layout_weight="1"
                     app:badgeBackgroundColor="@color/white"
                     app:compactCalendarBackgroundColor="@color/colorPrimary"
@@ -70,6 +80,12 @@
                     app:compactCalendarTargetHeight="250dp"
                     app:compactCalendarTextColor="@color/white"
                     app:compactCalendarTextSize="14dp" />
+
+                <View
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -82,12 +98,13 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="@color/colorPrimary"
-            app:cardElevation="50dp">
+            android:padding="2dp"
+            app:cardElevation="5dp">
 
             <android.support.v7.widget.RecyclerView
+                android:background="#6e3dc2"
                 android:id="@+id/rv_event_list"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent" />

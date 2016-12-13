@@ -35,7 +35,7 @@ public class MyNotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_notes_list);
-//        UIHelper.initToolbarWithBackNavigation(this,);
+        UIHelper.initToolbarWithBackNavigation(this,binding.toolbar,"My Notes");
         init();
     }
 

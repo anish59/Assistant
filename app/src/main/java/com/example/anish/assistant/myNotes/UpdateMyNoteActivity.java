@@ -9,11 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.dd.morphingbutton.MorphingButton;
 import com.example.anish.assistant.R;
 import com.example.anish.assistant.assistantHelper.DateHelper;
-import com.example.anish.assistant.databinding.ActivityAddnoteBinding;
-import com.example.anish.assistant.databinding.ActivityUpdateNoteBinding;
+import com.example.anish.assistant.assistantHelper.UIHelper;
+import com.example.anish.assistant.databinding.ActivityUpdateMynoteBinding;
 import com.example.anish.assistant.model.Notes;
 import com.example.anish.assistant.model.NotesRequest;
 
@@ -22,7 +21,7 @@ import com.example.anish.assistant.model.NotesRequest;
  */
 
 public class UpdateMyNoteActivity extends AppCompatActivity {
-    ActivityAddnoteBinding binding;
+    ActivityUpdateMynoteBinding binding;
     private String topic, desc;
     private long noteId;
 
@@ -30,20 +29,15 @@ public class UpdateMyNoteActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_addnote);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_update_mynote);
+        UIHelper.initToolbarWithBackNavigation(this,binding.toolbar,"Update Note");
 
         Intent intent = getIntent();
-        String status = intent.getStringExtra("status");
         topic = intent.getStringExtra("topic");
         desc = intent.getStringExtra("desc");
         noteId = intent.getLongExtra("noteId", 0);
 
-//        if (status.equals("update")) {
-        binding.insert.setVisibility(View.GONE);
-        binding.btnUpdate.setVisibility(View.VISIBLE);
-        binding.btnDelete.setVisibility(View.VISIBLE);
         init();
-//        }
 
 
     }

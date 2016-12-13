@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.anish.assistant.R;
 import com.example.anish.assistant.assistantHelper.DateHelper;
+import com.example.anish.assistant.assistantHelper.UIHelper;
 import com.example.anish.assistant.databinding.ActivityAddnoteBinding;
 import com.example.anish.assistant.model.Notes;
 import com.example.anish.assistant.model.NotesRequest;
@@ -26,6 +27,7 @@ public class AddNoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_addnote);
+        UIHelper.initToolbarWithBackNavigation(this,binding.toolbar,"Add Notes");
         binding.insert.setVisibility(View.GONE);
 
         binding.txtTitle.addTextChangedListener(new TextWatcher() {

@@ -14,7 +14,6 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:minHeight="?attr/actionBarSize"
@@ -58,13 +57,11 @@
 
                     <com.example.anish.assistant.assistantHelper.CustomTools.CEditText
                         android:id="@+id/txt_desc"
-                        style="@style/big_EditText_10Lines"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/round_btn"
                         android:inputType="textCapSentences|textMultiLine"
                         android:padding="10dp"
-                        android:scrollbars="vertical"
                         android:textColor="#FFFFFF"
                         app:font="@string/CourgetteRegular" />
                     <!--android:hint="Description"-->
@@ -83,13 +80,13 @@
                             android:textColor="#FFFFFF" />
                     </android.support.design.widget.TextInputLayout>-->
 
-                <com.spark.submitbutton.SubmitButton
 
-                    android:id="@+id/insert"
-                    android:layout_width="1dp"
-                    android:layout_height="1dp"
+                <com.spark.submitbutton.SubmitButton
+                    android:id="@+id/btn_update"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/yes_please"
+                    android:text="@string/note_update"
                     android:textColor="@color/white"
                     app:sub_btn_background="#009e9e"
                     app:sub_btn_duration="1000"
@@ -97,6 +94,19 @@
                     app:sub_btn_ripple_color="#673AB7"
                     app:sub_btn_tick_color="@color/white" />
 
+
+                <com.spark.submitbutton.SubmitButton
+                    android:id="@+id/btn_delete"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/note_delete"
+                    android:textColor="@color/white"
+                    app:sub_btn_background="#009e9e"
+                    app:sub_btn_duration="1000"
+                    app:sub_btn_line_color="#009e9e"
+                    app:sub_btn_ripple_color="#673AB7"
+                    app:sub_btn_tick_color="@color/white" />
 
             </LinearLayout>
         </LinearLayout>
