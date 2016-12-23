@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout  xmlns:android="http://schemas.android.com/apk/res/android">
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:src="@drawable/notes_bg">
+
 
     <ImageView
         android:layout_width="match_parent"
@@ -144,6 +145,7 @@
 
                 <ImageView
                     android:id="@+id/checkInternet"
+                    android:onClick="clickCheckInternet"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:layout_alignLeft="@+id/myCalendar"
@@ -160,5 +162,5 @@
         </LinearLayout>
 
     </android.support.percent.PercentRelativeLayout>
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
 </layout>
