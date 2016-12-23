@@ -15,6 +15,7 @@ import com.example.anish.assistant.R;
 import com.example.anish.assistant.adapter.NotesAdapter;
 import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.assistantHelper.SimpleDividerItemDecoration;
+import com.example.anish.assistant.assistantHelper.UIHelper;
 import com.example.anish.assistant.databinding.ActivityMycalendarBinding;
 import com.example.anish.assistant.model.Notes;
 import com.example.anish.assistant.myNotes.UpdateMyNoteActivity;
@@ -42,6 +43,18 @@ public class MyCalendarActivity extends AppCompatActivity {
         {
             notes.clear();
         }*/
+        if ( notesList==null) {
+            notesList = Notes.getAllNotes();
+            addEventsOnCalendar(notesList);
+
+        }
+        else{
+            notesList.clear();//clearing past list value
+            binding.compactCalendarView.removeAllEvents();//clearing all badge events on calendar dates
+            notesList=Notes.getAllNotes();
+            addEventsOnCalendar(notesList);
+        }
+
         getEventOnDate(binding.compactCalendarView.getCurrentDate());
         mNotesAdapter.notifyDataSetChanged();
     }
@@ -50,14 +63,11 @@ public class MyCalendarActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_mycalendar);
+        UIHelper.initToolbarWithBackNavigation(this, binding.toolbar, "My Calendar");
 
-        notesList = Notes.getAllNotes();
+
         getMonth();
-        Event ev;
-        for (int i = 0; i < notesList.size(); i++) {
-            ev = new Event(Color.GREEN, notesList.get(i).NoteDateMili());
-            binding.compactCalendarView.addEvent(ev);
-        }
+//        addEventsOnCalendar();
 
         binding.compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
@@ -70,6 +80,15 @@ public class MyCalendarActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void addEventsOnCalendar(List<Notes> notesList) {
+        Event ev;
+        for (int i = 0; i < notesList.size(); i++) {
+            ev = new Event(Color.GREEN, notesList.get(i).NoteDateMili());
+            binding.compactCalendarView.addEvent(ev);
+
+        }
     }
 
     private void getEventOnDate(Date dateSelected) {
@@ -118,8 +137,7 @@ public class MyCalendarActivity extends AppCompatActivity {
         Log.e("###date->", DateHelper.formatDate(binding.compactCalendarView.getFirstDayOfCurrentMonth(), DateHelper.MonthFormat));
     }
 
-    public void onDateClicked(View view)
-    {
+    public void onDateClicked(View view) {
 
     }
 }
