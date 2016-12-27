@@ -9,9 +9,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-/**
- * Created by anish on 12-10-2016.
- */
 public class CheckNetwork  {
 
 

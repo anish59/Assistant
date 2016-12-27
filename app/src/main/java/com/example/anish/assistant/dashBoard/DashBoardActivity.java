@@ -20,7 +20,7 @@ import com.example.anish.assistant.myNotes.MyNotesActivity;
 
 public class DashBoardActivity extends AppCompatActivity {
     ActivityDashboardBinding binding;
-
+    Snackbar snackbar, snackbar1,snackbar3;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +37,6 @@ public class DashBoardActivity extends AppCompatActivity {
         Intent intent = new Intent(DashBoardActivity.this, MyCalendarActivity.class);
         startActivity(intent);
     }
-
-    Boolean chechAgain = false;
-    Snackbar snackbar, snackbar1,snackbar3;
 
     public void clickCheckInternet(View view) {
 
