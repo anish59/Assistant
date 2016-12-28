@@ -17,6 +17,7 @@ import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.assistantHelper.SimpleDividerItemDecoration;
 import com.example.anish.assistant.assistantHelper.UIHelper;
 import com.example.anish.assistant.databinding.ActivityMycalendarBinding;
+import com.example.anish.assistant.databinding.PracticeLayoutBinding;
 import com.example.anish.assistant.model.Notes;
 import com.example.anish.assistant.myNotes.UpdateMyNoteActivity;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -32,7 +33,8 @@ import java.util.List;
 
 public class MyCalendarActivity extends AppCompatActivity {
 
-    ActivityMycalendarBinding binding;
+//    ActivityMycalendarBinding binding;
+    PracticeLayoutBinding binding;
     List<Notes> notesList, notes;
     NotesAdapter mNotesAdapter;
 
@@ -43,7 +45,7 @@ public class MyCalendarActivity extends AppCompatActivity {
         {
             notes.clear();
         }*/
-        if ( notesList==null) {
+        if (notesList==null) {
             notesList = Notes.getAllNotes();
             addEventsOnCalendar(notesList);
 
@@ -62,7 +64,7 @@ public class MyCalendarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_mycalendar);
+        binding = DataBindingUtil.setContentView(this, R.layout.practice_layout);
         UIHelper.initToolbarWithBackNavigation(this, binding.toolbar, "My Calendar");
 
 

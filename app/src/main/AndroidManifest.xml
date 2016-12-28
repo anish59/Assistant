@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.FullScreen">
         <activity
-            android:name=".login.LoginHome"
-            >
+            android:name=".login.LoginHome">
+<!--
+        <activity
+            android:name=".practice.CoordinateDemo">
+-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

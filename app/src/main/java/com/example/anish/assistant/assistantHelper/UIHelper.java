@@ -20,6 +20,7 @@ public class UIHelper
         toolbar.setTitleTextColor(Color.WHITE);
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
