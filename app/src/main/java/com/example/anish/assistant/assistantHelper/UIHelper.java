@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.anish.assistant.R;
 
@@ -35,5 +36,11 @@ public class UIHelper
         } else {
             context.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
+    }
+
+    public static String toStringEditText(TextView tv)
+    {
+        String text=tv.getText().toString().trim();
+        return text;
     }
 }

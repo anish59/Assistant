@@ -1,0 +1,10 @@
+CREATE TABLE MyCalEvents (
+	EventId	INTEGER NOT NULL PRIMARY KEY,
+	Title TEXT,
+	Desctiption	TEXT,
+	ReminderDate TEXT,
+	ReminderDateMili INTEGER
+);
+
+select_all_events:
+select * from MyCalEvents order by ReminderDateMili;

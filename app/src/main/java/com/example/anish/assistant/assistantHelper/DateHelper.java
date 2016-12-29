@@ -13,6 +13,7 @@ import java.util.Date;
 public class DateHelper
 {
     public static final String MMM_MM_dd_yyyy_h_mm_a="MMM MM dd, yyyy h:mm a";
+//    public static final String MMM_MM_dd_yyyy_h_mm="MMM MM dd, yyyy h:mm a";
     public static final String MMMM_dd_yyyy="MMMM dd, yyyy";
     public static final String MonthFormat = "MMM - yyyy";
     public static final String  MMM_MM_dd_yyyy= "MMM MM dd, yyyy";

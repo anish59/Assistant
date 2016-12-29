@@ -7,4 +7,6 @@
     <string name="NiconneRegular">Niconne-Regular.ttf</string>
     <string name="CourgetteRegular">Courgette-Regular.ttf</string>
     <string name="verdana">Verdana.ttf</string>
+    <string name="date">DATE</string>
+    <string name="time">TIME</string>
 </resources>

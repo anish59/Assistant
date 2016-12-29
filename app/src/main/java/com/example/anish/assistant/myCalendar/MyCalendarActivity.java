@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.anish.assistant.R;
 import com.example.anish.assistant.adapter.NotesAdapter;
@@ -33,8 +32,7 @@ import java.util.List;
 
 public class MyCalendarActivity extends AppCompatActivity {
 
-//    ActivityMycalendarBinding binding;
-    PracticeLayoutBinding binding;
+   ActivityMycalendarBinding binding;
     List<Notes> notesList, notes;
     NotesAdapter mNotesAdapter;
 
@@ -52,26 +50,26 @@ public class MyCalendarActivity extends AppCompatActivity {
         }
         else{
             notesList.clear();//clearing past list value
-            binding.compactCalendarView.removeAllEvents();//clearing all badge events on calendar dates
+            binding.includeMyCal.compactCalendarView.removeAllEvents();
             notesList=Notes.getAllNotes();
             addEventsOnCalendar(notesList);
         }
 
-        getEventOnDate(binding.compactCalendarView.getCurrentDate());
+        getEventOnDate(binding.includeMyCal.compactCalendarView.getCurrentDate());
         mNotesAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.practice_layout);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_mycalendar);
         UIHelper.initToolbarWithBackNavigation(this, binding.toolbar, "My Calendar");
 
 
         getMonth();
 //        addEventsOnCalendar();
 
-        binding.compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+        binding.includeMyCal.compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
                 getEventOnDate(dateClicked);
@@ -88,7 +86,7 @@ public class MyCalendarActivity extends AppCompatActivity {
         Event ev;
         for (int i = 0; i < notesList.size(); i++) {
             ev = new Event(Color.GREEN, notesList.get(i).NoteDateMili());
-            binding.compactCalendarView.addEvent(ev);
+            binding.includeMyCal.compactCalendarView.addEvent(ev);
 
         }
     }
@@ -101,9 +99,9 @@ public class MyCalendarActivity extends AppCompatActivity {
             Log.e("###notes:", notes.get(i) + "");
         }
 
-        binding.rvEventList.setLayoutManager(new LinearLayoutManager(MyCalendarActivity.this));
-        binding.rvEventList.addItemDecoration(new SimpleDividerItemDecoration(MyCalendarActivity.this));
-        binding.rvEventList.setItemViewCacheSize(0);
+        binding.includeMyCal.rvEventList.setLayoutManager(new LinearLayoutManager(MyCalendarActivity.this));
+        binding.includeMyCal.rvEventList.addItemDecoration(new SimpleDividerItemDecoration(MyCalendarActivity.this));
+        binding.includeMyCal.rvEventList.setItemViewCacheSize(0);
         mNotesAdapter = new NotesAdapter(MyCalendarActivity.this, notes, new NotesAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(int position) {
@@ -121,26 +119,30 @@ public class MyCalendarActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        binding.rvEventList.setAdapter(mNotesAdapter);
+        binding.includeMyCal.rvEventList.setAdapter(mNotesAdapter);
     }
 
     public void onPreviousMonth(View view) {
-        binding.compactCalendarView.showPreviousMonth();
+        binding.includeMyCal.compactCalendarView.showPreviousMonth();
         getMonth();
     }
 
     public void onNextMonthClick(View view) {
-        binding.compactCalendarView.showNextMonth();
+        binding.includeMyCal.compactCalendarView.showNextMonth();
         getMonth();
     }
 
     private void getMonth() {
-        binding.currentMonth.setText(DateHelper.formatDate(binding.compactCalendarView.getFirstDayOfCurrentMonth(), DateHelper.MonthFormat));
-        Log.e("###date->", DateHelper.formatDate(binding.compactCalendarView.getFirstDayOfCurrentMonth(), DateHelper.MonthFormat));
+        binding.includeMyCal.currentMonth.setText(DateHelper.formatDate(binding.includeMyCal.compactCalendarView.getFirstDayOfCurrentMonth(), DateHelper.MonthFormat));
+        Log.e("###date->", DateHelper.formatDate(binding.includeMyCal.compactCalendarView.getFirstDayOfCurrentMonth(), DateHelper.MonthFormat));
     }
 
     public void onDateClicked(View view) {
 
+    }
+
+    public void openAddEvent(View view) {
+        startActivity(new Intent(this,AddCalendarEventActivity.class));
     }
 }
 
