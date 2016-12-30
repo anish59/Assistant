@@ -11,14 +11,12 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.anish.assistant.R;
-import com.example.anish.assistant.adapter.NotesAdapter;
 import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.assistantHelper.SimpleDividerItemDecoration;
 import com.example.anish.assistant.assistantHelper.UIHelper;
 import com.example.anish.assistant.databinding.ActivityMycalendarBinding;
-import com.example.anish.assistant.databinding.PracticeLayoutBinding;
-import com.example.anish.assistant.model.Notes;
-import com.example.anish.assistant.myNotes.UpdateMyNoteActivity;
+import com.example.anish.assistant.myCalendar.adapters.EventsAdapter;
+import com.example.anish.assistant.myCalendar.model.MyCalendar;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
@@ -32,31 +30,30 @@ import java.util.List;
 
 public class MyCalendarActivity extends AppCompatActivity {
 
-   ActivityMycalendarBinding binding;
-    List<Notes> notesList, notes;
-    NotesAdapter mNotesAdapter;
+    ActivityMycalendarBinding binding;
+    List<MyCalendar> eventLists, events;
+    EventsAdapter eventsAdapter;
 
     @Override
     protected void onResume() {
         super.onResume();
-    /*    if(notes.size()>0)
+    /*    if(events.size()>0)
         {
-            notes.clear();
+            events.clear();
         }*/
-        if (notesList==null) {
-            notesList = Notes.getAllNotes();
-            addEventsOnCalendar(notesList);
+        if (eventLists == null) {
+            eventLists = MyCalendar.getAllEvents();
+            addEventsOnCalendar(eventLists);
 
-        }
-        else{
-            notesList.clear();//clearing past list value
+        } else {
+            eventLists.clear();//clearing past list value
             binding.includeMyCal.compactCalendarView.removeAllEvents();
-            notesList=Notes.getAllNotes();
-            addEventsOnCalendar(notesList);
+            eventLists = MyCalendar.getAllEvents();
+            addEventsOnCalendar(eventLists);
         }
 
         getEventOnDate(binding.includeMyCal.compactCalendarView.getCurrentDate());
-        mNotesAdapter.notifyDataSetChanged();
+        eventsAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -77,15 +74,15 @@ public class MyCalendarActivity extends AppCompatActivity {
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
-
+                getMonth();
             }
         });
     }
 
-    private void addEventsOnCalendar(List<Notes> notesList) {
+    private void addEventsOnCalendar(List<MyCalendar> notesList) {
         Event ev;
         for (int i = 0; i < notesList.size(); i++) {
-            ev = new Event(Color.GREEN, notesList.get(i).NoteDateMili());
+            ev = new Event(Color.GREEN, notesList.get(i).ReminderDateMili());
             binding.includeMyCal.compactCalendarView.addEvent(ev);
 
         }
@@ -93,33 +90,33 @@ public class MyCalendarActivity extends AppCompatActivity {
 
     private void getEventOnDate(Date dateSelected) {
         String matchDate = DateHelper.formatDate(dateSelected, DateHelper.MMM_MM_dd_yyyy);
-        notes = new ArrayList<Notes>();
-        notes = Notes.getAllNotesByDate(matchDate);
-        for (int i = 0; i < notes.size(); i++) {
-            Log.e("###notes:", notes.get(i) + "");
+        events = new ArrayList<MyCalendar>();
+        events = MyCalendar.getAllEventsDateWise(matchDate);
+        for (int i = 0; i < events.size(); i++) {
+            Log.e("###events:", events.get(i) + "");
         }
 
         binding.includeMyCal.rvEventList.setLayoutManager(new LinearLayoutManager(MyCalendarActivity.this));
         binding.includeMyCal.rvEventList.addItemDecoration(new SimpleDividerItemDecoration(MyCalendarActivity.this));
         binding.includeMyCal.rvEventList.setItemViewCacheSize(0);
-        mNotesAdapter = new NotesAdapter(MyCalendarActivity.this, notes, new NotesAdapter.OnItemClickedListener() {
+        eventsAdapter = new EventsAdapter(MyCalendarActivity.this, events, new EventsAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(int position) {
-                Intent intent = new Intent(MyCalendarActivity.this, UpdateMyNoteActivity.class);
-                String topic = notes.get(position).Title();
-                String desc = notes.get(position).Description();
-                Long noteId = notes.get(position).NoteId();
-
-                intent.putExtra("topic", topic);
-                intent.putExtra("desc", desc);
-                intent.putExtra("noteId", noteId);
-                intent.putExtra("status", "status");
-                Log.e("##-pos->", position + " " + topic);
-                Log.e("##-id->", notes.get(position).NoteId() + "");
-                startActivity(intent);
+//                Intent intent = new Intent(MyCalendarActivity.this, UpdateMyNoteActivity.class);
+//                String topic = events.get(position).Title();
+//                String desc = events.get(position).Desctiption();
+//                Long eventId = events.get(position).EventId();
+//
+//                intent.putExtra("topic", topic);
+//                intent.putExtra("desc", desc);
+//                intent.putExtra("noteId", eventId);
+//                intent.putExtra("status", "status");
+//                Log.e("##-pos->", position + " " + topic);
+//                Log.e("##-id->", events.get(position).EventId() + "");
+//                startActivity(intent);
             }
         });
-        binding.includeMyCal.rvEventList.setAdapter(mNotesAdapter);
+        binding.includeMyCal.rvEventList.setAdapter(eventsAdapter);
     }
 
     public void onPreviousMonth(View view) {
@@ -142,7 +139,7 @@ public class MyCalendarActivity extends AppCompatActivity {
     }
 
     public void openAddEvent(View view) {
-        startActivity(new Intent(this,AddCalendarEventActivity.class));
+        startActivity(new Intent(this, AddCalendarEventActivity.class));
     }
 }
 

@@ -53,5 +53,6 @@ dependencies {
     compile 'com.android.support:design:25.0.1'
     compile 'me.spark:submitbutton:1.0.1'
     compile 'com.github.dmytrodanylyk:android-morphing-button:98a4986e56'
+    compile 'com.wdullaer:materialdatetimepicker:2.5.0'
     compile project(':CalendarView')
 }

@@ -38,7 +38,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                boolean isReady = binding.insert.getText().toString().length()>3;
+                boolean isReady = binding.insert.getText().toString().trim().length()>1;
                 if(isReady)
                 {
                     binding.insert.setVisibility(View.VISIBLE);
@@ -70,8 +70,6 @@ public class AddNoteActivity extends AppCompatActivity {
                 notesRequest.setDescription(binding.txtDesc.getText().toString());
                 notesRequest.setNoteDate(DateHelper.getCurrentDateTime());
                 notesRequest.setNoteDateMili(DateHelper.getCurrentDateTimeInMili());
-
-
                 try {
                     Notes.insertInNotes(notesRequest);
                 } catch (Exception e) {
@@ -86,12 +84,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
     private void delayOneSec() {
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                finish();
-            }
-        }, 1500);
+        handler.postDelayed(() -> finish(), 1500);
     }
 
 }

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -30,7 +31,7 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class AlarmHelper extends BroadcastReceiver {
     public static ReminderPojo reminderPojo = new ReminderPojo();
-    public static int mYear, mMonth, mDay, mHour, mMinute;
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -59,45 +60,6 @@ public class AlarmHelper extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(m, noBuilder.build()); //0 = ID of notification
 
-    }
-
-    public static void getDateFromDialog(Context mContext, final TextView tv) {
-        final Calendar c = Calendar.getInstance();
-
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-                datePicker.setMinDate(System.currentTimeMillis() - 1000);
-                tv.setText(String.format("%s-%s-%s", dayOfMonth, monthOfYear, year));
-                reminderPojo.setrDay(dayOfMonth);
-                reminderPojo.setrMonth(monthOfYear);
-                reminderPojo.setrYear(year);
-            }
-        }, mYear, mMonth, mDay);
-
-        datePickerDialog.show();
-        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-    }
-
-    public static void getTimeFromDialog(Context mContext, final TextView tv) {
-        final Calendar c = Calendar.getInstance();
-        mHour = c.get(Calendar.HOUR_OF_DAY);
-        mMinute = c.get(Calendar.MINUTE);
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(mContext, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-                tv.setText(String.format("%s-%s", hourOfDay, minute));
-                reminderPojo.setrHour(hourOfDay);
-                reminderPojo.setrMinute(minute);
-            }
-        }, mHour, mMinute, false);
-        timePickerDialog.show();
     }
 
     public static void getReminder(Context mContext, int CalId) {

@@ -31,6 +31,18 @@ public abstract class MyCalendar implements MyCalEventsModel {
         return myEvents;
     }
 
+    public static List<MyCalendar> getAllEventsDateWise(String date) {
+        List<MyCalendar> myEvents = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
+        String query = String.format(MyCalendar.SELECT_ALL_EVENTS_BY_REMINDERDATE, date);
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{});
+        while (cursor.moveToNext()) {
+            myEvents.add(MyCalendar.MY_CALENDAR_ROW_MAPPER.map(cursor));
+        }
+        DatabaseManager.getInstance().closeDatabase();
+        return myEvents;
+    }
+
     public static void insertInMyCalendar(MyCalRequest myCalRequest) {
 
         try {
@@ -41,7 +53,6 @@ public abstract class MyCalendar implements MyCalEventsModel {
             sqLiteDatabase.insert(MyCalendar.TABLE_NAME, null, MyCalendar.MY_CALENDAR_FACTORY.marshal()
                     .Title(myCalRequest.Title())
                     .Desctiption(myCalRequest.Desctiption())
-                    .EventId(myCalRequest.EventId())
                     .ReminderDate(myCalRequest.ReminderDate())
                     .ReminderDateMili(myCalRequest.ReminderDateMili())
                     .asContentValues());

@@ -135,7 +135,6 @@
                     app:sub_btn_line_color="#009e9e"
                     app:sub_btn_ripple_color="#FFFFFF"
                     app:sub_btn_tick_color="@color/white" />
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

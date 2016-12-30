@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.anish.assistant.R;
@@ -13,8 +14,7 @@ import com.example.anish.assistant.R;
  * Created by anish on 07-12-2016.
  */
 
-public class UIHelper
-{
+public class UIHelper {
 
     public static void initToolbarWithBackNavigation(final AppCompatActivity activity, Toolbar toolbar, String title) {
         toolbar.setTitle(title);
@@ -29,6 +29,7 @@ public class UIHelper
             }
         });
     }
+
     public static void fireIntent(Activity context, boolean isNewActivity) {
         context.finish();
         if (!isNewActivity) {
@@ -38,9 +39,12 @@ public class UIHelper
         }
     }
 
-    public static String toStringEditText(TextView tv)
-    {
-        String text=tv.getText().toString().trim();
+    public static String toStringEditText(TextView tv) {
+        String text = tv.getText().toString().trim();
+        return text;
+    }
+    public static String toStringButton(Button button) {
+        String text = button.getText().toString().trim();
         return text;
     }
 }

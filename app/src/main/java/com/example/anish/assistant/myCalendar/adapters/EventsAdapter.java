@@ -1,4 +1,4 @@
-package com.example.anish.assistant.adapter;
+package com.example.anish.assistant.myCalendar.adapters;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -11,6 +11,7 @@ import com.example.anish.assistant.R;
 import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.databinding.ActivityNotesItemBinding;
 import com.example.anish.assistant.model.Notes;
+import com.example.anish.assistant.myCalendar.model.MyCalendar;
 
 import java.util.List;
 
@@ -18,19 +19,19 @@ import java.util.List;
  * Created by anish on 30-11-2016.
  */
 
-public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
+public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.NotesViewHolder> {
     ActivityNotesItemBinding binding;
     Context mContext;
-    List<Notes> notesList;
+    List<MyCalendar> eventList;
     OnItemClickedListener mOnItemClickedListener;
 
     public interface OnItemClickedListener {
         void onItemClicked(int position);
     }
 
-    public NotesAdapter(Context mContext, List<Notes> stringList, OnItemClickedListener mOnItemClickedListener) {
+    public EventsAdapter(Context mContext, List<MyCalendar> stringList, OnItemClickedListener mOnItemClickedListener) {
         this.mContext = mContext;
-        this.notesList = stringList;
+        this.eventList = stringList;
         this.mOnItemClickedListener = mOnItemClickedListener;
     }
 
@@ -45,18 +46,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     @Override
     public void onBindViewHolder(NotesViewHolder holder, int position) {
 
-       /* holder.topic.setText("Topic: "+ notesList.get(position).Title());
-        holder.detail.setText("Detail: "+ notesList.get(position).Description());*/
+       /* holder.topic.setText("Topic: "+ eventList.get(position).Title());
+        holder.detail.setText("Detail: "+ eventList.get(position).Description());*/
 
-        Notes notes = notesList.get(position);
-        holder.setDetails(notes,position);
+        MyCalendar events = eventList.get(position);
+        holder.setDetails(events,position);
 
 
     }
 
     @Override
     public int getItemCount() {
-        return notesList.size();
+        return eventList.size();
     }
 
     public class NotesViewHolder extends RecyclerView.ViewHolder {
@@ -70,14 +71,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
             detail = binding.txtDetail;*/
         }
 
-        public void setDetails(Notes notes,int position) {
-            binding.txtTopic.setText(notes.Title());
-            binding.txtDetail.setText(notes.Description());
-            binding.txtDate.setText(DateHelper.formatDate(notes.NoteDate(),DateHelper.MMM_MM_dd_yyyy_h_mm_a,DateHelper.MMMM_dd_yyyy));
+        public void setDetails(MyCalendar events, int position) {
+            binding.txtTopic.setText(events.Title());
+            binding.txtDetail.setText(events.Desctiption());
+            binding.txtDate.setText(DateHelper.formatDate(events.ReminderDate(),DateHelper.MMM_MM_dd_yyyy_h_mm_a,DateHelper.MMMM_dd_yyyy));
 
       /*  Log.e("pos-=",position+"");
 
-        Log.e("position->",notesList.get(position).NoteId()+"");*/
+        Log.e("position->",eventList.get(position).NoteId()+"");*/
 
 
            /* binding.getRoot().setOnClickListener(new View.OnClickListener() {
