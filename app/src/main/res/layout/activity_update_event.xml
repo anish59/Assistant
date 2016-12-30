@@ -121,19 +121,33 @@
                         android:text="@string/time"
                         android:textColor="@color/white" />
                 </LinearLayout>
-
                 <com.spark.submitbutton.SubmitButton
-                    android:id="@+id/insert"
-                    android:onClick="addEvent"
-                    android:layout_width="1dp"
-                    android:layout_height="1dp"
+                    android:id="@+id/btn_update"
+                    android:onClick="clickUpdate"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/yes_please"
+                    android:text="@string/note_update"
                     android:textColor="@color/white"
                     app:sub_btn_background="#009e9e"
                     app:sub_btn_duration="1000"
                     app:sub_btn_line_color="#009e9e"
-                    app:sub_btn_ripple_color="#FFFFFF"
+                    app:sub_btn_ripple_color="#673AB7"
+                    app:sub_btn_tick_color="@color/white" />
+
+
+                <com.spark.submitbutton.SubmitButton
+                    android:id="@+id/btn_delete"
+                    android:onClick="clickDelete"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/note_delete"
+                    android:textColor="@color/white"
+                    app:sub_btn_background="#009e9e"
+                    app:sub_btn_duration="1000"
+                    app:sub_btn_line_color="#009e9e"
+                    app:sub_btn_ripple_color="#673AB7"
                     app:sub_btn_tick_color="@color/white" />
             </LinearLayout>
         </LinearLayout>

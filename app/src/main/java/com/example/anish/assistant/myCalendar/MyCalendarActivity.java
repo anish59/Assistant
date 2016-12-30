@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.example.anish.assistant.R;
 import com.example.anish.assistant.assistantHelper.DateHelper;
+import com.example.anish.assistant.assistantHelper.IntentConstants;
 import com.example.anish.assistant.assistantHelper.SimpleDividerItemDecoration;
 import com.example.anish.assistant.assistantHelper.UIHelper;
 import com.example.anish.assistant.databinding.ActivityMycalendarBinding;
@@ -102,18 +103,20 @@ public class MyCalendarActivity extends AppCompatActivity {
         eventsAdapter = new EventsAdapter(MyCalendarActivity.this, events, new EventsAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(int position) {
-//                Intent intent = new Intent(MyCalendarActivity.this, UpdateMyNoteActivity.class);
-//                String topic = events.get(position).Title();
-//                String desc = events.get(position).Desctiption();
-//                Long eventId = events.get(position).EventId();
-//
-//                intent.putExtra("topic", topic);
-//                intent.putExtra("desc", desc);
-//                intent.putExtra("noteId", eventId);
-//                intent.putExtra("status", "status");
-//                Log.e("##-pos->", position + " " + topic);
-//                Log.e("##-id->", events.get(position).EventId() + "");
-//                startActivity(intent);
+                Intent intent = new Intent(MyCalendarActivity.this, UpdateCalendarEventActivity.class);
+                String topic = events.get(position).Title();
+                String desc = events.get(position).Desctiption();
+                String reminderDate = events.get(position).ReminderDate();
+                Long eventId = events.get(position).EventId();
+
+                intent.putExtra(IntentConstants.topic, topic);
+                intent.putExtra(IntentConstants.desc, desc);
+                intent.putExtra(IntentConstants.eventId, eventId);
+                intent.putExtra(IntentConstants.reminderDate, reminderDate);
+                intent.putExtra("status", "status");
+                Log.e("##-pos->", position + " " + topic);
+                Log.e("##-id->", events.get(position).EventId() + "");
+                startActivity(intent);
             }
         });
         binding.includeMyCal.rvEventList.setAdapter(eventsAdapter);
