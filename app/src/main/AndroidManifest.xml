@@ -30,6 +30,7 @@
         <activity android:name=".myNotes.UpdateMyNoteActivity"/>
         <activity android:name=".myCalendar.MyCalendarActivity"/>
         <activity android:name=".myCalendar.AddCalendarEventActivity"/>
+        <activity android:name=".myCalendar.UpdateCalendarEventActivity"/>
         <receiver
             android:name=".assistantHelper.AlarmHelper"
             android:enabled="true">

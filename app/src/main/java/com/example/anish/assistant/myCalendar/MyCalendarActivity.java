@@ -149,7 +149,6 @@ public class MyCalendarActivity extends AppCompatActivity {
 
        /* calendar.setTime(DateHelper.parseDate("Dec 12 08, 2016 12:26 AM", "MMM MM dd, yyyy h:mm a"));
         calendar.setTime(DateHelper.parseDate("Dec 12 10, 2016 12:26 AM", "MMM MM dd, yyyy h:mm a"));*/
-
 /*
         Event ev1 = null, ev2 = null;
         try {

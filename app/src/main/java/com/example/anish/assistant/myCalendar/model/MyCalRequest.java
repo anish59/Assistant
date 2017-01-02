@@ -14,6 +14,10 @@ public class MyCalRequest extends MyCalendar {
     private String ReminderDate;
     private Long ReminderDateMili;
 
+    public void setEventId(long eventId) {
+        EventId = eventId;
+    }
+
     public long getEventId() {
         return EventId;
     }

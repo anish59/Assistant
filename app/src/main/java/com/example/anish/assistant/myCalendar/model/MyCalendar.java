@@ -61,4 +61,17 @@ public abstract class MyCalendar implements MyCalEventsModel {
             Log.e("INSERT_MyCal_EXP", e.toString());
         }
     }
+
+    public static void update(MyCalRequest myCalRequest) { // For updating calender events
+        SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
+        sqLiteDatabase.update(MyCalendar.TABLE_NAME, MyCalendar.MY_CALENDAR_FACTORY.marshal(myCalRequest).asContentValues(),
+                MyCalendar.EVENTID + "=?", new String[]{String.valueOf(myCalRequest.EventId())});
+        DatabaseManager.getInstance().closeDatabase();
+    }
+
+    public static void delete(long noteId) {
+        SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
+        sqLiteDatabase.delete(MyCalendar.TABLE_NAME, MyCalendar.EVENTID + "=?", new String[]{String.valueOf(noteId)});
+        DatabaseManager.getInstance().closeDatabase();
+    }
 }

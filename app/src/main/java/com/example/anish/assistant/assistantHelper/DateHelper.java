@@ -24,7 +24,7 @@ public class DateHelper
     public static ReminderPojo reminderPojo = new ReminderPojo();
     public static int mYear, mMonth, mDay, mHour, mMinute;
     public static final String MMM_MM_dd_yyyy_h_mm_a="MMM MM dd, yyyy h:mm a";
-    public static final String splitDateNTime="dd-MM-yyyy:hh-mm";
+    public static final String splitDateNTimeFormat="dd-MM-yyyy:hh:mm"; //Split from first ':'
     public static final String dd_mm_yyyy_hh_mm="dd-MM-yyyy-hh:mm";
     public static final String MMMM_dd_yyyy="MMMM dd, yyyy";
     public static final String MonthFormat = "MMM - yyyy";
