@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.anish.assistant.R;
+import com.example.anish.assistant.assistantHelper.AlarmHelper;
 import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.assistantHelper.IntentConstants;
 import com.example.anish.assistant.assistantHelper.UIHelper;
@@ -25,7 +26,6 @@ import java.text.ParseException;
 
 public class UpdateCalendarEventActivity extends AppCompatActivity {
     ActivityUpdateEventBinding binding;
-    private String selectedTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,9 +64,13 @@ public class UpdateCalendarEventActivity extends AppCompatActivity {
         myCalRequest.setReminderDate(dateNTime);
         myCalRequest.setReminderDateMili(DateHelper.getTimeInMili(DateHelper.MMM_MM_dd_yyyy_h_mm_a, dateNTime));
         Intent intent = getIntent();
-        myCalRequest.setEventId(intent.getLongExtra(IntentConstants.eventId, 0));
+        myCalRequest.setEventId(intent.getLongExtra(IntentConstants.eventId, -1));
         try {
             MyCalendar.update(myCalRequest);
+            MyCalendar myCalendar = MyCalendar.getLastCase();
+            AlarmHelper alarmHelper = new AlarmHelper();
+            alarmHelper.getReminder(this, (int) myCalendar.EventId()
+                    , myCalendar.Title(), myCalendar.Desctiption(), myCalendar.ReminderDate());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,7 +85,17 @@ public class UpdateCalendarEventActivity extends AppCompatActivity {
     public void clickDelete(View view) {
         Intent intent = getIntent();
         MyCalendar.delete(intent.getLongExtra(IntentConstants.eventId, 0));
+        AlarmHelper alarmHelper=new AlarmHelper();
+        alarmHelper.cancelAlarm(this,intent.getLongExtra(IntentConstants.eventId, 0));
         Toast.makeText(this, "Reminder deleted", Toast.LENGTH_SHORT).show();
         delayOneSec();
+    }
+
+    public void clickDate(View view) {
+        DateHelper.getDateFromDialog(this, binding.btnDate);
+    }
+
+    public void clickTime(View view) {
+        DateHelper.getTimeFromDialog(this, binding.btnTime);
     }
 }

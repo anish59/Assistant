@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.anish.assistant.R;
+import com.example.anish.assistant.assistantHelper.AlarmHelper;
 import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.assistantHelper.UIHelper;
 import com.example.anish.assistant.databinding.ActivityAddEventBinding;
@@ -89,8 +90,14 @@ public class AddCalendarEventActivity extends AppCompatActivity {
         myCalRequest.setReminderDateMili(DateHelper.getTimeInMili(DateHelper.MMM_MM_dd_yyyy_h_mm_a, dateNTime));
         try {
             MyCalendar.insertInMyCalendar(myCalRequest);
+            Log.e("lastId", MyCalendar.getLastCase() + "");
+            MyCalendar myCalendar = MyCalendar.getLastCase();
+            AlarmHelper alarmHelper=new AlarmHelper();
+            alarmHelper.getReminder(this, (int) myCalendar.EventId()
+                    , myCalendar.Title(), myCalendar.Desctiption(), myCalendar.ReminderDate());
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("SQL error-->", e.getMessage());
         }
         delayOneSec();
     }

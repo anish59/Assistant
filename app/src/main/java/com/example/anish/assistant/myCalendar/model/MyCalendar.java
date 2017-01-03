@@ -43,6 +43,17 @@ public abstract class MyCalendar implements MyCalEventsModel {
         return myEvents;
     }
 
+    public static MyCalendar getLastCase() {
+        MyCalendar myCalendar = null;
+        SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(MyCalendar.SELECT_LAST_EVENTID, new String[]{});
+        if (cursor.moveToNext()) {
+            myCalendar = MyCalendar.MY_CALENDAR_ROW_MAPPER.map(cursor);
+        }
+        DatabaseManager.getInstance().closeDatabase();
+        return myCalendar;
+    }
+
     public static void insertInMyCalendar(MyCalRequest myCalRequest) {
 
         try {

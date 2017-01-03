@@ -12,3 +12,5 @@ select * from MyCalEvents order by ReminderDateMili;
 select_all_events_by_ReminderDate:
 select * from MyCalEvents where ReminderDate Like'%s%%' order by ReminderDateMili;
 
+select_last_EventId:
+SELECT * FROM MyCalEvents ORDER BY EventId DESC LIMIT 1;
