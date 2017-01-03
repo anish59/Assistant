@@ -104,6 +104,5 @@ public class AlarmHelper extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, (int) alarmID, intent, 0);
         AlarmManager alarmManager = getAlarmManager(context);
         alarmManager.cancel(pendingIntent);
-//        initBootAlarm(context);
     }
 }
