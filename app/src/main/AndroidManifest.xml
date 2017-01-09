@@ -31,6 +31,7 @@
         <activity android:name=".myCalendar.MyCalendarActivity"/>
         <activity android:name=".myCalendar.AddCalendarEventActivity"/>
         <activity android:name=".myCalendar.UpdateCalendarEventActivity"/>
+        <activity android:name=".myExpense.MyExpenseActivity"/>
         <receiver
             android:name=".assistantHelper.AlarmHelper"
             android:enabled="true">

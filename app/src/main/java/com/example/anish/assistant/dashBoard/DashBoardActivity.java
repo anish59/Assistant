@@ -12,6 +12,7 @@ import com.example.anish.assistant.R;
 import com.example.anish.assistant.assistantHelper.CheckNetwork;
 import com.example.anish.assistant.databinding.ActivityDashboardBinding;
 import com.example.anish.assistant.myCalendar.MyCalendarActivity;
+import com.example.anish.assistant.myExpense.MyExpenseActivity;
 import com.example.anish.assistant.myNotes.MyNotesActivity;
 
 /**
@@ -61,5 +62,10 @@ public class DashBoardActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    public void clickMyExpense(View view)
+    {
+        startActivity(new Intent(DashBoardActivity.this, MyExpenseActivity.class));
     }
 }

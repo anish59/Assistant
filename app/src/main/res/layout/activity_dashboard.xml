@@ -105,6 +105,7 @@
 
                 <ImageView
                     android:id="@+id/MyExpenses"
+                    android:onClick="clickMyExpense"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_alignParentEnd="true"

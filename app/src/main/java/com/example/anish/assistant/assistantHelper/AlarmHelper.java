@@ -78,8 +78,7 @@ public class AlarmHelper extends BroadcastReceiver {
                 reminderPojo.getrMonth(),
                 reminderPojo.getrDay(),
                 reminderPojo.getrHour(),
-                reminderPojo.getrMinute(),
-                0);
+                reminderPojo.getrMinute(), 0);
         Log.e("$$$$-->", "hour:->" + reminderPojo.getrHour() + " Day:" + reminderPojo.getrDay());
         Intent myIntent = new Intent(mContext, AlarmHelper.class);
         myIntent.putExtra(IntentConstants.topic, title);
