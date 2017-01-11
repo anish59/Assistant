@@ -68,7 +68,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 notesRequest = new NotesRequest();
                 notesRequest.setTitle(binding.txtTitle.getText().toString());
                 notesRequest.setDescription(binding.txtDesc.getText().toString());
-                notesRequest.setNoteDate(DateHelper.getCurrentDateTime());
+                notesRequest.setNoteDate(DateHelper.getCurrentDateTime(false,false));
                 notesRequest.setNoteDateMili(DateHelper.getCurrentDateTimeInMili());
                 try {
                     Notes.insertInNotes(notesRequest);

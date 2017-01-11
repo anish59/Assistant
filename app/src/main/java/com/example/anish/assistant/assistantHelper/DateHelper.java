@@ -6,6 +6,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TimePicker;
 
 import com.example.anish.assistant.myCalendar.model.ReminderPojo;
@@ -19,29 +20,35 @@ import java.util.Date;
  * Created by anish on 07-12-2016.
  */
 
-public class DateHelper
-{
+public class DateHelper {
     public static ReminderPojo reminderPojo = new ReminderPojo();
     public static int mYear, mMonth, mDay, mHour, mMinute;
-    public static final String MMM_MM_dd_yyyy_h_mm_a="MMM MM dd, yyyy h:mm a";
-    public static final String splitDateNTimeFormat="dd-MM-yyyy:hh:mm"; //Split from first ':'
-    public static final String dd_mm_yyyy_hh_mm="dd-MM-yyyy-hh:mm";
-    public static final String MMMM_dd_yyyy="MMMM dd, yyyy";
+    public static final String MMM_MM_dd_yyyy_h_mm_a = "MMM MM dd, yyyy h:mm a";
+    public static final String dd_MM_yyyy = "dd-MM-yyyy";
+    public static final String MMM= "MMM";
+    public static final String splitDateNTimeFormat = "dd-MM-yyyy:hh:mm"; //Split from first ':'
+    public static final String dd_mm_yyyy_hh_mm = "dd-MM-yyyy-hh:mm";
+    public static final String MMMM_dd_yyyy = "MMMM dd, yyyy";
     public static final String MonthFormat = "MMM - yyyy";
-    public static final String  MMM_MM_dd_yyyy= "MMM MM dd, yyyy";
-    public static String getCurrentDateTime()
-    {
+    public static final String MMM_MM_dd_yyyy = "MMM MM dd, yyyy";
+
+    public static String getCurrentDateTime(boolean needOnlyDate,boolean needOnlyMonth) {
+
         long date = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM MM dd, yyyy h:mm a");
+        SimpleDateFormat sdf;
+
+        if (needOnlyDate) sdf =new SimpleDateFormat(dd_MM_yyyy);
+        else if(needOnlyMonth) sdf =  new SimpleDateFormat(MMM);
+        else sdf=new SimpleDateFormat(MMM_MM_dd_yyyy_h_mm_a);
         String dateString = sdf.format(date);
-        Log.d("##date->",dateString);
+        Log.d("##date->", dateString);
         return dateString;
 //        notesRequest.setNoteDate(dateString);
     }
 
     public static long getCurrentDateTimeInMili() {
         long date = System.currentTimeMillis();
-        Log.d("##date->", date+"");
+        Log.d("##date->", date + "");
         return date;
     }
 
@@ -82,7 +89,6 @@ public class DateHelper
     }
 
 
-
     public static Long getTimeInMili(String givenDateString, String inputDate) throws ParseException {
 
         SimpleDateFormat sdf = new SimpleDateFormat(givenDateString);
@@ -111,9 +117,9 @@ public class DateHelper
             @Override
             public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                 datePicker.setMinDate(System.currentTimeMillis() - 1000);
-                button.setText(String.format("%s-%s-%s", dayOfMonth, monthOfYear+1, year));
+                button.setText(String.format("%s-%s-%s", dayOfMonth, monthOfYear + 1, year));
                 reminderPojo.setrDay(dayOfMonth);
-                reminderPojo.setrMonth(monthOfYear+1);
+                reminderPojo.setrMonth(monthOfYear + 1);
                 reminderPojo.setrYear(year);
             }
         }, mYear, mMonth, mDay);
@@ -122,6 +128,28 @@ public class DateHelper
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
     }
 
+    public static void getDateFromDialog(Context mContext, final EditText editText) {
+        final Calendar c = Calendar.getInstance();
+
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+                datePicker.setMinDate(System.currentTimeMillis() - 1000);
+                editText.setText(String.format("%s-%s-%s", dayOfMonth, monthOfYear + 1, year));
+                reminderPojo.setrDay(dayOfMonth);
+                reminderPojo.setrMonth(monthOfYear + 1);
+                reminderPojo.setrYear(year);
+            }
+        }, mYear, mMonth, mDay);
+
+        datePickerDialog.show();
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+    }
 
     public static void getTimeFromDialog(Context mContext, final Button button) {
         final Calendar c = Calendar.getInstance();
@@ -132,6 +160,23 @@ public class DateHelper
             @Override
             public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                 button.setText(String.format("%s:%s", hourOfDay, minute));
+                reminderPojo.setrHour(hourOfDay);
+                reminderPojo.setrMinute(minute);
+            }
+        }, mHour, mMinute, false);
+//        timePickerDialog.set
+        timePickerDialog.show();
+    }
+
+    public static void getTimeFromDialog(Context mContext, final EditText editText) {
+        final Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(mContext, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                editText.setText(String.format("%s:%s", hourOfDay, minute));
                 reminderPojo.setrHour(hourOfDay);
                 reminderPojo.setrMinute(minute);
             }

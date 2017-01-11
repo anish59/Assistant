@@ -60,7 +60,7 @@ public class UpdateMyNoteActivity extends AppCompatActivity {
                 notesRequest.setNoteId(noteId);
                 notesRequest.setTitle(binding.txtTitle.getText().toString().trim());
                 notesRequest.setDescription(binding.txtDesc.getText().toString().trim());
-                notesRequest.setNoteDate(DateHelper.getCurrentDateTime());
+                notesRequest.setNoteDate(DateHelper.getCurrentDateTime(false,false));
                 notesRequest.setNoteDateMili(DateHelper.getCurrentDateTimeInMili());
                 try {
                     Notes.update(notesRequest);

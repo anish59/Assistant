@@ -1,0 +1,13 @@
+CREATE TABLE MyExpense (
+	ExpenseId INTEGER NOT NULL PRIMARY KEY,
+	Budget REAL,
+	SpendOn TEXT,
+	Amount REAL,
+	Month TEXT,
+	ExpenseDate TEXT,
+	ExpenseDateMili	INTEGER,
+	Discription	TEXT
+);
+
+select_all_expense:
+select * from MyExpense;

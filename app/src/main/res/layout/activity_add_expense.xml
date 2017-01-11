@@ -10,13 +10,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
+                android:layout_gravity="center_horizontal"
                 android:minHeight="?attr/actionBarSize"
                 android:orientation="horizontal"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -34,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="20dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/notes_mark" />
+                    android:src="@drawable/piggy_bank" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -42,10 +43,40 @@
                     android:textColorHint="#FFF">
 
                     <com.example.anish.assistant.assistantHelper.CustomTools.CEditText
-                        android:id="@+id/txt_title"
+                        android:id="@+id/txtSpendOn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Topic"
+                        android:hint="Spend on"
+                        android:textColor="#FFFFFF"
+                        app:font="@string/verdana" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#FFF">
+
+                    <com.example.anish.assistant.assistantHelper.CustomTools.CEditText
+                        android:id="@+id/txt_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Amount"
+                        android:inputType="numberDecimal"
+                        android:textColor="#FFFFFF"
+                        app:font="@string/verdana" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#FFF">
+
+                    <com.example.anish.assistant.assistantHelper.CustomTools.CEditText
+                        android:id="@+id/txt_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/date"
+                        android:onClick="clickDate"
                         android:textColor="#FFFFFF"
                         app:font="@string/verdana" />
                 </android.support.design.widget.TextInputLayout>
@@ -58,10 +89,11 @@
 
                     <com.example.anish.assistant.assistantHelper.CustomTools.CEditText
                         android:id="@+id/txt_desc"
-                        style="@style/big_EditText_10Lines"
+                        style="@style/big_EditText_5Lines"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/round_btn"
+                        android:hint="Description"
                         android:inputType="textCapSentences|textMultiLine"
                         android:padding="10dp"
                         android:scrollbars="vertical"
@@ -84,7 +116,6 @@
                     </android.support.design.widget.TextInputLayout>-->
 
                 <com.spark.submitbutton.SubmitButton
-
                     android:id="@+id/insert"
                     android:layout_width="1dp"
                     android:layout_height="1dp"

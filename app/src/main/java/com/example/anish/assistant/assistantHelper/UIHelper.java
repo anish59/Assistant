@@ -43,6 +43,10 @@ public class UIHelper {
         String text = tv.getText().toString().trim();
         return text;
     }
+    public static double toDoubleEditText(TextView tv) {
+        double text = Double.parseDouble(tv.getText().toString().trim());
+        return text;
+    }
     public static String toStringButton(Button button) {
         String text = button.getText().toString().trim();
         return text;

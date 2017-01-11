@@ -52,6 +52,11 @@
         <item name="android:gravity">left|top</item>
         <item name="android:lines">10</item>
     </style>
+    <style name="big_EditText_5Lines" parent="round_edit_text">
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:gravity">left|top</item>
+        <item name="android:lines">5</item>
+    </style>
 
     <style name="round_edit_text">
         <item name="android:maxLines">1</item>
