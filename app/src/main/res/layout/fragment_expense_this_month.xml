@@ -15,12 +15,10 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_expense_list"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="hi"
-                    android:textColor="@color/white"
-                    android:textSize="25dp" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
 
             <android.support.design.widget.FloatingActionButton

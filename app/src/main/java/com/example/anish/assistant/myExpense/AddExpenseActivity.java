@@ -55,7 +55,6 @@ public class AddExpenseActivity extends AppCompatActivity {
                 delayOneSec();
             }
         });
-
     }
 
     private void delayOneSec() {

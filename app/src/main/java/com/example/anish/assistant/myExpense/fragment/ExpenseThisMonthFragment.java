@@ -13,6 +13,10 @@ import android.view.ViewGroup;
 import com.example.anish.assistant.R;
 import com.example.anish.assistant.databinding.FragmentExpenseThisMonthBinding;
 import com.example.anish.assistant.myExpense.AddExpenseActivity;
+import com.example.anish.assistant.myExpense.model.MyExpense;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by anish on 09-01-2017.
@@ -20,6 +24,7 @@ import com.example.anish.assistant.myExpense.AddExpenseActivity;
 
 public class ExpenseThisMonthFragment extends Fragment {
     FragmentExpenseThisMonthBinding binding;
+    List<MyExpense> myExpenseList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,8 @@ public class ExpenseThisMonthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_expense_this_month, container, false);
 
+        fragInit();
+
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,6 +48,12 @@ public class ExpenseThisMonthFragment extends Fragment {
         return binding.getRoot();
 
 
+    }
+
+    private void fragInit() {
+
+        myExpenseList=new ArrayList<>();
+        myExpenseList=MyExpense.getAllMyExpenses();
     }
 
 }
