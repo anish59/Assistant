@@ -38,8 +38,6 @@ public class MyExpenseAdapter extends RecyclerView.Adapter<MyExpenseAdapter.MyVi
         return null;
     }
 
-
-
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.bindTo(myExpenseList.get(position), mOnClickListener);
