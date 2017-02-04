@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.example.anish.assistant.R;
 import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.databinding.ActivityNotesItemBinding;
-import com.example.anish.assistant.model.Notes;
 import com.example.anish.assistant.myCalendar.model.MyCalendar;
 
 import java.util.List;

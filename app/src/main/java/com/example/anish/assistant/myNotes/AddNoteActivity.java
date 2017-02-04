@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,10 +13,8 @@ import com.example.anish.assistant.R;
 import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.assistantHelper.UIHelper;
 import com.example.anish.assistant.databinding.ActivityAddnoteBinding;
-import com.example.anish.assistant.model.Notes;
-import com.example.anish.assistant.model.NotesRequest;
-
-import java.text.SimpleDateFormat;
+import com.example.anish.assistant.myNotes.model.Notes;
+import com.example.anish.assistant.myNotes.model.NotesRequest;
 
 public class AddNoteActivity extends AppCompatActivity {
     ActivityAddnoteBinding binding;

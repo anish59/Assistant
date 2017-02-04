@@ -19,8 +19,6 @@ import com.example.anish.assistant.databinding.ActivityAddEventBinding;
 import com.example.anish.assistant.myCalendar.model.MyCalRequest;
 import com.example.anish.assistant.myCalendar.model.MyCalendar;
 
-import java.text.ParseException;
-
 /**
  * Created by anish on 29-12-2016.
  */
@@ -58,50 +56,55 @@ public class AddCalendarEventActivity extends AppCompatActivity {
 
             }
         });
-    }
 
-    public void addEvent(View view) throws ParseException {
-        if (UIHelper.toStringEditText(binding.txtTitle).isEmpty()) {
-            Toast.makeText(this, "Please enter title.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (UIHelper.toStringButton(binding.btnDate).equals(getString(R.string.date))
-                || UIHelper.toStringButton(binding.btnDate).equals("")) {
-            Toast.makeText(this, "Please select reminder date.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        binding.insert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (UIHelper.toStringEditText(binding.txtTitle).isEmpty()) {
+                    Toast.makeText(AddCalendarEventActivity.this, "Please enter title.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (UIHelper.toStringButton(binding.btnDate).equals(getString(R.string.date))
+                        || UIHelper.toStringButton(binding.btnDate).equals("")) {
+                    Toast.makeText(AddCalendarEventActivity.this, "Please select reminder date.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-        if (!(UIHelper.toStringButton(binding.btnTime).equals(getString(R.string.time))
-                || UIHelper.toStringButton(binding.btnTime).equals(""))) {
-            selectedTime = UIHelper.toStringButton(binding.btnTime);
-        } else {
-            selectedTime = "00:00";
-        }
+                if (!(UIHelper.toStringButton(binding.btnTime).equals(getString(R.string.time))
+                        || UIHelper.toStringButton(binding.btnTime).equals(""))) {
+                    selectedTime = UIHelper.toStringButton(binding.btnTime);
+                } else {
+                    selectedTime = "00:00";
+                }
 
-        String dateNTime = DateHelper.formatDate(UIHelper.toStringButton(binding.btnDate)
-                + "-" + selectedTime, DateHelper.dd_mm_yyyy_hh_mm, DateHelper.MMM_MM_dd_yyyy_h_mm_a);
+                String dateNTime = DateHelper.formatDate(UIHelper.toStringButton(binding.btnDate)
+                        + "-" + selectedTime, DateHelper.dd_mm_yyyy_hh_mm, DateHelper.MMM_MM_dd_yyyy_h_mm_a);
 
 //        Log.e("$$DateOutput->", datentime+"in milli->"+DateHelper.getTimeInMili(DateHelper.MMM_MM_dd_yyyy_h_mm_a,datentime));
+                try {
+                    MyCalRequest myCalRequest = new MyCalRequest();
+                    myCalRequest.setTitle(UIHelper.toStringEditText(binding.txtTitle));
+                    myCalRequest.setDesctiption(UIHelper.toStringEditText(binding.txtDesc));
+                    myCalRequest.setReminderDate(dateNTime);
+                    myCalRequest.setReminderDateMili(DateHelper.getTimeInMili(DateHelper.MMM_MM_dd_yyyy_h_mm_a, dateNTime));
 
-        MyCalRequest myCalRequest = new MyCalRequest();
-        myCalRequest.setTitle(UIHelper.toStringEditText(binding.txtTitle));
-        myCalRequest.setDesctiption(UIHelper.toStringEditText(binding.txtDesc));
-        myCalRequest.setReminderDate(dateNTime);
-        myCalRequest.setReminderDateMili(DateHelper.getTimeInMili(DateHelper.MMM_MM_dd_yyyy_h_mm_a, dateNTime));
-        try {
-            MyCalendar.insertInMyCalendar(myCalRequest);
-            Log.e("lastId", MyCalendar.getLastCase() + "");
-            MyCalendar myCalendar = MyCalendar.getLastCase();
-            AlarmHelper alarmHelper=new AlarmHelper();
-            alarmHelper.getReminder(this, (int) myCalendar.EventId()
-                    , myCalendar.Title(), myCalendar.Desctiption(), myCalendar.ReminderDate());
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("SQL error-->", e.getMessage());
-        }
-        delayOneSec();
+                    MyCalendar.insertInMyCalendar(myCalRequest);
+                    Log.e("lastId", MyCalendar.getLastCase() + "");
+                    MyCalendar myCalendar2 = MyCalendar.getLastCase();
+                    AlarmHelper alarmHelper = new AlarmHelper();
+                    alarmHelper.setNotificationAlarm(AddCalendarEventActivity.this
+                            , myCalendar2.EventId()
+                            , myCalendar2.Title()
+                            , myCalendar2.Desctiption()
+                            , DateHelper.parseDate(myCalendar2.ReminderDate(),DateHelper.MMM_MM_dd_yyyy_h_mm_a));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("SQL error-->", e.getMessage());
+                }
+                delayOneSec();
+            }
+        });
     }
-
     private void delayOneSec() {
 
         Handler handler = new Handler();

@@ -13,8 +13,8 @@ import com.example.anish.assistant.R;
 import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.assistantHelper.UIHelper;
 import com.example.anish.assistant.databinding.ActivityUpdateMynoteBinding;
-import com.example.anish.assistant.model.Notes;
-import com.example.anish.assistant.model.NotesRequest;
+import com.example.anish.assistant.myNotes.model.Notes;
+import com.example.anish.assistant.myNotes.model.NotesRequest;
 
 /**
  * Created by anish on 05-12-2016.

@@ -104,18 +104,16 @@ public class MyCalendarActivity extends AppCompatActivity {
             @Override
             public void onItemClicked(int position) {
                 Intent intent = new Intent(MyCalendarActivity.this, UpdateCalendarEventActivity.class);
-                String topic = events.get(position).Title();
-                String desc = events.get(position).Desctiption();
-                String reminderDate = events.get(position).ReminderDate();
-                Long eventId = events.get(position).EventId();
+//                String topic = events.get(position).Title();
+//                String desc = events.get(position).Desctiption();
+//                String reminderDate = events.get(position).ReminderDate();
+                long eventId = events.get(position).EventId();
 
-                intent.putExtra(IntentConstants.topic, topic);
-                intent.putExtra(IntentConstants.desc, desc);
                 intent.putExtra(IntentConstants.eventId, eventId);
-                intent.putExtra(IntentConstants.reminderDate, reminderDate);
+//                intent.putExtra(IntentConstants.topic, topic);
+//                intent.putExtra(IntentConstants.desc, desc);
+//                intent.putExtra(IntentConstants.reminderDate, reminderDate);
                 intent.putExtra("status", "status");
-                Log.e("##-pos->", position + " " + topic);
-                Log.e("##-id->", events.get(position).EventId() + "");
                 startActivity(intent);
             }
         });
@@ -157,11 +155,11 @@ public class MyCalendarActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        binding.compactCalendarView.addEvent(ev1);
-        binding.compactCalendarView.addEvent(ev2);
+        binding.compactCalendarView.clickAddEvent(ev1);
+        binding.compactCalendarView.clickAddEvent(ev2);
 
 //        Event ev2 = new Event(Color.GREEN, 1433704251000L);
-//        binding.compactCalendarView.addEvent(ev2);
+//        binding.compactCalendarView.clickAddEvent(ev2);
 
-        binding.compactCalendarView.addEvent(new Event(Color.BLACK, calendar.getTime().getTime()));
+        binding.compactCalendarView.clickAddEvent(new Event(Color.BLACK, calendar.getTime().getTime()));
 */

@@ -10,12 +10,11 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.anish.assistant.R;
-import com.example.anish.assistant.adapter.NotesAdapter;
-import com.example.anish.assistant.assistantHelper.DateHelper;
+import com.example.anish.assistant.myNotes.adapter.NotesAdapter;
 import com.example.anish.assistant.assistantHelper.SimpleDividerItemDecoration;
 import com.example.anish.assistant.assistantHelper.UIHelper;
 import com.example.anish.assistant.databinding.ActivityNotesListBinding;
-import com.example.anish.assistant.model.Notes;
+import com.example.anish.assistant.myNotes.model.Notes;
 
 import java.util.ArrayList;
 import java.util.List;

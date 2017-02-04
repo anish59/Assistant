@@ -1,4 +1,4 @@
-package com.example.anish.assistant.model;
+package com.example.anish.assistant.myNotes.model;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

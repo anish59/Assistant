@@ -21,25 +21,49 @@ import java.util.Date;
  */
 
 public class DateHelper {
-    public static ReminderPojo reminderPojo = new ReminderPojo();
+    //    D	day in year	(Number)	189
+//    E	day of week	(Text)	E/EE/EEE:Tue, EEEE:Tuesday, EEEEE:T
+//    F	day of week in month	(Number)	2 (2nd Wed in July)
+//    G	era designator	(Text)	AD
+//    H	hour in day (0-23)	(Number)	0
+//    K	hour in am/pm (0-11)	(Number)	0
+//    L	stand-alone month	(Text)	L:1 LL:01 LLL:Jan LLLL:January LLLLL:J
+//    M	month in year	(Text)	M:1 MM:01 MMM:Jan MMMM:January MMMMM:J
+//    S	fractional seconds	(Number)	978
+//    W	week in month	(Number)	2
+//    Z	time zone (RFC 822)	(Time Zone)	Z/ZZ/ZZZ:-0800 ZZZZ:GMT-08:00 ZZZZZ:-08:00
+//    a	am/pm marker	(Text)	PM
+//    c	stand-alone day of week	(Text)	c/cc/ccc:Tue, cccc:Tuesday, ccccc:T
+//    d	day in month	(Number)	10
+//    h	hour in am/pm (1-12)	(Number)	12
+//    k	hour in day (1-24)	(Number)	24
+//    m	minute in hour	(Number)	30
+//    s	second in minute	(Number)	55
+//    w	week in year	(Number)	27
+//    y	year	(Number)	yy:10 y/yyy/yyyy:2010
+//    z	time zone	(Time Zone)	z/zz/zzz:PST zzzz:Pacific Standard Time
+//    '	escape for text	(Delimiter)	'Date=':Date=
+//            ''	single quote	d(Literal)	'o''clock':o'clock
+
+    //    public static ReminderPojo reminderPojo = new ReminderPojo();
     public static int mYear, mMonth, mDay, mHour, mMinute;
     public static final String MMM_MM_dd_yyyy_h_mm_a = "MMM MM dd, yyyy h:mm a";
     public static final String dd_MM_yyyy = "dd-MM-yyyy";
-    public static final String MMM= "MMM";
+    public static final String MMM = "MMM";
     public static final String splitDateNTimeFormat = "dd-MM-yyyy:hh:mm"; //Split from first ':'
     public static final String dd_mm_yyyy_hh_mm = "dd-MM-yyyy-hh:mm";
     public static final String MMMM_dd_yyyy = "MMMM dd, yyyy";
     public static final String MonthFormat = "MMM - yyyy";
     public static final String MMM_MM_dd_yyyy = "MMM MM dd, yyyy";
 
-    public static String getCurrentDateTime(boolean needOnlyDate,boolean needOnlyMonth) {
+    public static String getCurrentDateTime(boolean needOnlyDate, boolean needOnlyMonth) {
 
         long date = System.currentTimeMillis();
         SimpleDateFormat sdf;
 
-        if (needOnlyDate) sdf =new SimpleDateFormat(dd_MM_yyyy);
-        else if(needOnlyMonth) sdf =  new SimpleDateFormat(MMM);
-        else sdf=new SimpleDateFormat(MMM_MM_dd_yyyy_h_mm_a);
+        if (needOnlyDate) sdf = new SimpleDateFormat(dd_MM_yyyy);
+        else if (needOnlyMonth) sdf = new SimpleDateFormat(MMM);
+        else sdf = new SimpleDateFormat(MMM_MM_dd_yyyy_h_mm_a);
         String dateString = sdf.format(date);
         Log.d("##date->", dateString);
         return dateString;
@@ -118,9 +142,9 @@ public class DateHelper {
             public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                 datePicker.setMinDate(System.currentTimeMillis() - 1000);
                 button.setText(String.format("%s-%s-%s", dayOfMonth, monthOfYear + 1, year));
-                reminderPojo.setrDay(dayOfMonth);
-                reminderPojo.setrMonth(monthOfYear + 1);
-                reminderPojo.setrYear(year);
+//                reminderPojo.setrDay(dayOfMonth);
+//                reminderPojo.setrMonth(monthOfYear + 1);
+//                reminderPojo.setrYear(year);
             }
         }, mYear, mMonth, mDay);
 
@@ -141,9 +165,9 @@ public class DateHelper {
             public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                 datePicker.setMinDate(System.currentTimeMillis() - 1000);
                 editText.setText(String.format("%s-%s-%s", dayOfMonth, monthOfYear + 1, year));
-                reminderPojo.setrDay(dayOfMonth);
-                reminderPojo.setrMonth(monthOfYear + 1);
-                reminderPojo.setrYear(year);
+//                reminderPojo.setrDay(dayOfMonth);
+//                reminderPojo.setrMonth(monthOfYear + 1);
+//                reminderPojo.setrYear(year);
             }
         }, mYear, mMonth, mDay);
 
@@ -160,8 +184,8 @@ public class DateHelper {
             @Override
             public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                 button.setText(String.format("%s:%s", hourOfDay, minute));
-                reminderPojo.setrHour(hourOfDay);
-                reminderPojo.setrMinute(minute);
+//                reminderPojo.setrHour(hourOfDay);
+//                reminderPojo.setrMinute(minute);
             }
         }, mHour, mMinute, false);
 //        timePickerDialog.set
@@ -177,8 +201,8 @@ public class DateHelper {
             @Override
             public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                 editText.setText(String.format("%s:%s", hourOfDay, minute));
-                reminderPojo.setrHour(hourOfDay);
-                reminderPojo.setrMinute(minute);
+//                reminderPojo.setrHour(hourOfDay);
+//                reminderPojo.setrMinute(minute);
             }
         }, mHour, mMinute, false);
 //        timePickerDialog.set

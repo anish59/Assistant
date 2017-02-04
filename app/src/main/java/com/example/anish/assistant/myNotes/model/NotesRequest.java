@@ -1,4 +1,4 @@
-package com.example.anish.assistant.model;
+package com.example.anish.assistant.myNotes.model;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

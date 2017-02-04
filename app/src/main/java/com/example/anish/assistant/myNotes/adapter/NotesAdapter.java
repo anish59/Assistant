@@ -1,4 +1,4 @@
-package com.example.anish.assistant.adapter;
+package com.example.anish.assistant.myNotes.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.example.anish.assistant.R;
 import com.example.anish.assistant.assistantHelper.DateHelper;
 import com.example.anish.assistant.databinding.ActivityNotesItemBinding;
-import com.example.anish.assistant.model.Notes;
+import com.example.anish.assistant.myNotes.model.Notes;
 
 import java.util.List;
 

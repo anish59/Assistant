@@ -7,6 +7,7 @@ import android.util.Log;
 import com.example.anish.assistant.MyCalEventsModel;
 import com.example.anish.assistant.dataBaseHelper.DatabaseManager;
 import com.google.auto.value.AutoValue;
+import com.google.common.base.Strings;
 import com.squareup.sqldelight.RowMapper;
 
 import java.util.ArrayList;
@@ -41,6 +42,18 @@ public abstract class MyCalendar implements MyCalEventsModel {
         }
         DatabaseManager.getInstance().closeDatabase();
         return myEvents;
+    }
+
+    public static MyCalendar getEventById(long eventId) {
+        MyCalendar myCalendarEvents = null;
+        SQLiteDatabase sqLiteDatabase = DatabaseManager.getInstance().openDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(MyCalendar.SELECT_EVENT_BYEVENTID, new String[]{String.valueOf(eventId)});
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            myCalendarEvents = MyCalendar.MY_CALENDAR_ROW_MAPPER.map(cursor);
+        }
+        DatabaseManager.getInstance().closeDatabase();
+        return myCalendarEvents;
     }
 
     public static MyCalendar getLastCase() {

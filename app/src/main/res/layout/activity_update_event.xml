@@ -123,7 +123,6 @@
                 </LinearLayout>
                 <com.spark.submitbutton.SubmitButton
                     android:id="@+id/btn_update"
-                    android:onClick="clickUpdate"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_horizontal"
@@ -138,7 +137,6 @@
 
                 <com.spark.submitbutton.SubmitButton
                     android:id="@+id/btn_delete"
-                    android:onClick="clickDelete"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_horizontal"
