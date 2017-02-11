@@ -44,7 +44,7 @@ public class AlarmHelper extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.e("Event ID:(oR) ", intent.getLongExtra(IntentConstants.eventId, AppConstants.DefaultId) + "::" + intent.getStringExtra(IntentConstants.topic));
 
-        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
+        /*if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
             List<MyCalendar> eventLists = MyCalendar.getAllEvents();
             for (MyCalendar myEventLists : eventLists) {
                 setNotificationAlarm(context
@@ -59,7 +59,12 @@ public class AlarmHelper extends BroadcastReceiver {
                     , intent.getStringExtra(IntentConstants.topic)
                     , intent.getStringExtra(IntentConstants.desc)
                     , intent.getLongExtra(IntentConstants.eventId, AppConstants.DefaultId));
-        }
+        }*/
+        showNotification(context
+                , intent.getStringExtra(IntentConstants.topic)
+                , intent.getStringExtra(IntentConstants.desc)
+                , intent.getLongExtra(IntentConstants.eventId, AppConstants.DefaultId));
+
 
     }
 
