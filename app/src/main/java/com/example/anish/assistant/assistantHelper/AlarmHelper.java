@@ -43,6 +43,7 @@ public class AlarmHelper extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.e("Event ID:(oR) ", intent.getLongExtra(IntentConstants.eventId, AppConstants.DefaultId) + "::" + intent.getStringExtra(IntentConstants.topic));
+        //Todo: Add proper reminder AFTER reboot of device
 
         /*if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
             List<MyCalendar> eventLists = MyCalendar.getAllEvents();
