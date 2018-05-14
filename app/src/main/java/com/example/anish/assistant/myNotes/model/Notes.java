@@ -53,7 +53,6 @@ public abstract class Notes implements notesModel {
             notes.add(Notes.NOTES_ROW_MAPPER.map(cursor));
         }
         DatabaseManager.getInstance().closeDatabase();
-
         return notes;
     }
 
